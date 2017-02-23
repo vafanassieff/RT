@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/21 18:19:03 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/23 13:58:55 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@
 # define MAT_DIELECT	0x4
 # define MAT_DIFF_LIGHT	0x8
 
+# define TEXT_IMAGE	0x12
+# define TEXT_NONE	0x13
 # define BO_S	"<scene>"
 # define BC_S	"</scene>"
 # define BO_C	"<camera>"

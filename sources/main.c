@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 21:40:50 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/21 12:07:10 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/22 17:48:07 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int ac, char **av)
 	pthread_mutex_init(&rt->mutex, NULL);
 	pthread_cond_init(&rt->display_cond, NULL);
 	pthread_create(&rt->render_th, NULL, (void*)render_loop, (void*)rt);
-
+	
 	rt->suspend = TRUE;
 	rt->esdl->eng.input->quit = 0;
 	while (rt->esdl->run)
@@ -73,7 +73,5 @@ int			main(int ac, char **av)
 		esdl_fps_limit(rt->esdl);
 		esdl_fps_counter(rt->esdl);
 	}
-
-	quit_rt(rt);
 	return (0);
 }

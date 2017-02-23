@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 14:46:01 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/20 16:22:52 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/23 18:48:07 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ BOOL		refract(const t_vec3 v, const t_vec3 n, double ni_over_nt,
 		return (FALSE);
 }
 
-t_mat		*new_material(t_vec3 albedo, double t)
+t_mat		*new_material(t_vec3 albedo, double t, t_texture *texture)
 {
 	t_mat		*m;
 
 	m = malloc(sizeof(t_mat));
 	m->albedo = albedo;
 	m->t = t;
+	m->m_text = texture;
 	return (m);
 }
 
@@ -60,7 +61,15 @@ BOOL		scatter_lambertian(const t_ray ray, const t_hit param,
 	target = v3_add_vec_(v3_add_vec_(param.pos, param.normal),
 	random_in_unit_sphere());
 	*scattered = new_ray(param.pos, v3_sub_vec_(target, param.pos));
-	*attenuation = param.material->albedo;
+	if (param.material->m_text->type_texture == TEXT_IMAGE)
+	{
+		double	u;
+		double	v;
+		get_sphere_uv(v3_div_vec_(v3_sub_vec_(param.pos, v3_(0., 2., 0.)), 2.),&u, &v);
+		*attenuation = image_texture_value(param.material->m_text->data, u, v);
+	}
+	else
+		*attenuation = param.material->albedo;
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/21 12:05:23 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/23 18:19:02 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,19 @@ typedef struct s_hit
 ** Materials
 */
 
+typedef	struct		s_texture
+{
+	UCHAR			type_texture;
+	SDL_Surface		*data;
+	char			*filename;
+	void            (*get_uv)(t_vec3 *p, double *u, double *v);
+	void            (*texture_func)();
+}					t_texture;
+
 typedef struct s_mat
 {
 	UCHAR			type_mat;
+	t_texture		*m_text;
 	t_vec3			albedo;
 	t_vec3			emitted;
 	double			t;

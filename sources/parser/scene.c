@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 22:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/01/07 16:53:07 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/23 18:48:10 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,17 @@ t_scene		init_scene(t_rt *rt)
 	v3_(0., 0., 0.)))));
 	scene.this_cam = &scene.cam[0];
 
-	scene.sizeof_obj = 5;
+	scene.sizeof_obj = 2;
 	scene.obj = (t_obj*)malloc(scene.sizeof_obj * sizeof(t_obj));
-	scene.obj[0] = new_object((void*)new_sphere(v3_(0., -1000., 0.), 1000.),
-	OBJ_SPHERE, new_material(v3_(1., 1., 1.), 0.), MAT_LAMBERT);
-	scene.obj[1] = new_object((void*)new_sphere(v3_(0., 2., 0.), 2.),
-	OBJ_SPHERE, new_material(v3_(.1, .8, 1.), 0.), MAT_LAMBERT);
-	scene.obj[2] = new_object((void*)new_sphere(v3_(-3., 2., -4.), 2.),
-	OBJ_SPHERE, new_material(v3_(1., 0., 0.), .1), MAT_METAL);
-	scene.obj[3] = new_object((void*)new_sphere(v3_(-3., 2., 3.), 2.),
-	OBJ_SPHERE, new_material(v3_(0., 0., 1.), 0.), MAT_METAL);
-	scene.obj[4] = new_object((void*)new_sphere(v3_(3., 9., 0.), 2.),
-	OBJ_SPHERE, new_material(v3_(1., 1., 0.), 0.), MAT_DIFF_LIGHT);
-	scene.this_obj = &scene.obj[1];
-
+//	scene.obj[1] = new_object((void*)new_sphere(v3_(0., -1000., 0.), 1000.),
+//	OBJ_SPHERE, new_material(v3_(.8, .0, 0.), 0.,new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
+	scene.obj[0] = new_object((void*)new_sphere(v3_(0., 2., 0.), 2.),
+	OBJ_SPHERE, new_material(v3_(.1, .8, 1.), 0., new_texture(TEXT_IMAGE, "./1010.bmp")), MAT_LAMBERT);
+	scene.obj[1] = new_object((void*)new_sphere(v3_(2., 10., 15.), 10.),
+	OBJ_SPHERE, new_material(v3_(1., 1., 1.), 1., new_texture(TEXT_NONE, NULL)), MAT_DIFF_LIGHT);
 	scene.sizeof_skb = 1;
 	scene.skybox = (t_skybox*)malloc(scene.sizeof_skb * sizeof(t_skybox));
-	scene.skybox[0] = new_skybox(v3_(.01, .01, .01), v3_(.1, .1, .1),
+	scene.skybox[0] = new_skybox(v3_(.0, .0, .0), v3_(0., 0., 0.),
 	SKYBX_GRADIENT);
 	scene.this_skb = &scene.skybox[0];
 

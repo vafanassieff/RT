@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/21 12:07:50 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:48:34 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "kernel.h"
 
 # include "struct.h"
+
+
+//test Victor
+
+void    get_sphere_uv(const t_vec3 p, double *u, double *v);
+t_vec3 image_texture_value(SDL_Surface *data, double u, double v);
 
 /*
 ** Init RT
@@ -145,8 +151,8 @@ BOOL		hit_plane_xy(void *obj, const t_ray *ray, const double t[2], \
 /*
 ** Materials
 */
-
-t_mat		*new_material(t_vec3 albedo, double t);
+t_texture	*new_texture(const UCHAR type_texture, char *filename);
+t_mat		*new_material(t_vec3 albedo, double t, t_texture *texture);
 
 t_vec3		reflect(const t_vec3 v, const t_vec3 n);
 BOOL		scatter_lambertian(const t_ray ray, const t_hit param,
