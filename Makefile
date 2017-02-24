@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/02/23 15:27:14 by vafanass         ###   ########.fr        #
+#    Updated: 2017/02/24 16:20:38 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC =		esdl/color.c\
 			utils/list2.c\
 			utils/utils.c\
 			utils/utils2.c\
+			utils/utils3.c\
 			main.c
 
 OBJ =		$(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/23 17:48:34 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:21:18 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 //test Victor
 
-void    get_sphere_uv(const t_vec3 p, double *u, double *v);
-t_vec3 image_texture_value(SDL_Surface *data, double u, double v);
-
+void		get_sphere_uv(const t_vec3 p, double *u, double *v);
+t_vec3		image_texture_value(SDL_Surface *data, double u, double v);
+uint32_t	getpixel(SDL_Surface *surface, int x, int y);
 /*
 ** Init RT
 */

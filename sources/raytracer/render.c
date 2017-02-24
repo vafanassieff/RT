@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 15:38:18 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/23 16:27:06 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/24 17:26:10 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ BOOL			hit_list(t_scene *scene, const t_ray ray, const double t[2],
 			closest_so_far[1] = param->t;
 			param->material = scene->obj[i].p_mat;
 			param->i_lst = i;
+			param->type_obj = scene->obj[i].type_obj;
+			param->p_obj = scene->obj[i].p_obj;
 		}
 		++i;
 	}

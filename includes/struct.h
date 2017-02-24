@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/23 18:19:02 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/24 17:40:17 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,30 @@ typedef struct s_hit
 	t_vec3			pos;
 	t_vec3			normal;
 	struct s_mat	*material;
+	UCHAR           type_obj;
+	void			*p_obj;
+	
 }				t_hit;
 
 /*
-** Materials
+** Only used in image_texture_value()
+*/
+
+typedef	struct		s_textvalue
+{
+	int				i;
+	int				j;
+	float			r;
+	float			g;
+	float			b;
+	uint8_t			ri;
+	uint8_t			gi;
+	uint8_t			bi;
+	uint32_t		pixel;
+}					t_textvalue;
+
+/*
+** Material
 */
 
 typedef	struct		s_texture
