@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 12:50:44 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/23 18:48:12 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:02:32 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	void	*select_texture(const UCHAR t)
 	void	*s;
 
 	if (t == TEXT_IMAGE)
-		s = (void *)&image_texture_value;
+		s = (void *)&surface_value;
 	else
 		s = NULL;
 	return (s);

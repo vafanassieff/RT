@@ -6,13 +6,13 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:56:15 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/24 17:40:15 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:00:26 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	get_sphere_uv(const t_vec3 p, double *u, double *v)
+void	sphere_uv(const t_vec3 p, double *u, double *v)
 {
 	double phi;
 	double theta;
@@ -23,7 +23,7 @@ void	get_sphere_uv(const t_vec3 p, double *u, double *v)
 	*v = (theta + (M_PI / 2)) / M_PI;
 }
 
-t_vec3 image_texture_value(SDL_Surface *data, double u, double v)
+t_vec3 surface_value(SDL_Surface *data, double u, double v)
 {
 	t_textvalue	t;
 

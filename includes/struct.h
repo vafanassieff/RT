@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/24 17:40:17 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/25 16:58:53 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef	struct		s_texture
 	char			*filename;
 	void            (*get_uv)(t_vec3 *p, double *u, double *v);
 	void            (*texture_func)();
+	double			u;
+	double			v;
 }					t_texture;
 
 typedef struct s_mat

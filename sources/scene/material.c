@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 14:46:01 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/24 17:40:13 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/25 17:04:44 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,11 @@ BOOL		scatter_lambertian(const t_ray ray, const t_hit param,
 	{
 		if (param.type_obj == OBJ_SPHERE)
 		{
-		double	u;
-		double	v;
 		t_vec3	allo;
-
 		allo = v3_div_vec_(v3_sub_vec_(param.pos, v3_(0., 0., 0.)), 10.);
-		get_sphere_uv(allo,&u, &v);
-		*attenuation = image_texture_value(param.material->m_text->data, u, v);
+		sphere_uv(allo, &param.material->m_text->u, &param.material->m_text->v);
+		*attenuation = surface_value(param.material->m_text->data,
+		param.material->m_text->u, param.material->m_text->v);
 		}
 	}
 	else
