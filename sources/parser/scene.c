@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 22:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/27 15:01:27 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/27 16:08:51 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_scene		init_scene(t_rt *rt)
 
 	scene.sizeof_cam = 1;
 	scene.cam = (t_cam*)malloc(scene.sizeof_cam * sizeof(t_cam));
-	scene.cam[0] = set_camera(v3_(13., 2., 3.), v3_(0., 0., 0.),
+	scene.cam[0] = set_camera(v3_(-13., 2., 3.), v3_(0., 0., 0.),
 	v3_(0., -1., 0.), camparam(60., (double)rt->r_view->w / (double)
 	rt->r_view->h, .2, v3_lenght_double_(v3_sub_vec_(v3_(13., 2., 3.),
 	v3_(0., 0., 0.)))));
@@ -28,8 +28,8 @@ t_scene		init_scene(t_rt *rt)
 	scene.obj = (t_obj*)malloc(scene.sizeof_obj * sizeof(t_obj));
 //	scene.obj[1] = new_object((void*)new_sphere(v3_(0., -1000., 0.), 1000.),
 //	OBJ_SPHERE, new_material(v3_(.8, .0, 0.), 0.,new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
-	scene.obj[0] = new_object((void*)new_sphere(v3_(0., 0., 0.), 10.),
-	OBJ_SPHERE, new_material(v3_(.1, .8, 1.), 0., new_texture(TEXT_CHECKBOARD, "./checkerBoard.bmp")), MAT_LAMBERT);
+	scene.obj[0] = new_object((void*)new_sphere(v3_(0., 1., 0.), 10.),
+	OBJ_SPHERE, new_material(v3_(.1, .8, 1.), 0., new_texture(TEXT_IMAGE, "./earthmap.bmp")), MAT_LAMBERT);
 	scene.obj[1] = new_object((void*)new_sphere(v3_(2., 20., 10.), 10.),
 	OBJ_SPHERE, new_material(v3_(1., 1., 1.), 1., new_texture(TEXT_NONE, NULL)), MAT_DIFF_LIGHT);
 	scene.sizeof_skb = 1;

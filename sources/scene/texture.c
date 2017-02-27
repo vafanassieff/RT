@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 12:50:44 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/27 15:01:21 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/27 16:26:42 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ t_texture	*new_texture(const UCHAR type_texture, char *filename)
 	t->filename = filename;
 	if (t->filename != NULL && type_texture == TEXT_IMAGE)
 		t->data = SDL_LoadBMP(filename);
+	else 
+		(t->type_texture == TEXT_NONE);
 	return (t);
 }
 
 void	texture_sphere(const t_hit  param, t_vec3 *attenuation)
 {
-	t_vec3		color;
+	t_vec3		coord;
 	t_sphere	*s;
 
 	s = (t_sphere *)param.p_obj;
-	color = v3_div_vec_(v3_sub_vec_(param.pos, s->center), s->radius);
-	sphere_uv(color, &param.material->m_text->u, &param.material->m_text->v);
+	coord = v3_div_vec_(v3_sub_vec_(param.pos, s->center), s->radius);
+	sphere_uv(coord, &param.material->m_text->u, &param.material->m_text->v);
 	*attenuation = surface_value(param.material->m_text->data,
 			param.material->m_text->u, param.material->m_text->v);
 }
@@ -43,7 +45,7 @@ void	texture_it(const t_hit	param, t_vec3 *attenuation)
 		if (param.type_obj == OBJ_SPHERE)
 			texture_sphere(param, attenuation);
 	}
-	if (param.material->m_text->type_texture == TEXT_CHECKBOARD)
+	else if (param.material->m_text->type_texture == TEXT_CHECKBOARD)
 		texture_checkboard(param.pos, attenuation);
 	else
 		*attenuation = param.material->albedo;
