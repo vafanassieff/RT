@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/23 13:58:55 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:44:22 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@
 
 # define TEXT_IMAGE	0x12
 # define TEXT_NONE	0x13
+# define TEXT_TEST	0x14
+# define TEXT_CHECKBOARD 0x15
+
 # define BO_S	"<scene>"
 # define BC_S	"</scene>"
 # define BO_C	"<camera>"

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 14:46:01 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/25 17:04:44 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/27 14:04:51 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,7 @@ BOOL		scatter_lambertian(const t_ray ray, const t_hit param,
 	target = v3_add_vec_(v3_add_vec_(param.pos, param.normal),
 	random_in_unit_sphere());
 	*scattered = new_ray(param.pos, v3_sub_vec_(target, param.pos));
-	if (param.material->m_text->type_texture == TEXT_IMAGE)
-	{
-		if (param.type_obj == OBJ_SPHERE)
-		{
-		t_vec3	allo;
-		allo = v3_div_vec_(v3_sub_vec_(param.pos, v3_(0., 0., 0.)), 10.);
-		sphere_uv(allo, &param.material->m_text->u, &param.material->m_text->v);
-		*attenuation = surface_value(param.material->m_text->data,
-		param.material->m_text->u, param.material->m_text->v);
-		}
-	}
-	else
-		*attenuation = param.material->albedo;
+	texture_it(param, attenuation);
 	return (TRUE);
 }
 
@@ -85,7 +73,7 @@ BOOL		scatter_metal(const t_ray ray, const t_hit param,
 	reflected = reflect(v3_unit_vec_(ray.dir), param.normal);
 	*scattered = new_ray(param.pos, v3_add_vec_(reflected, v3_scale_vec_
 	(random_in_unit_sphere(), param.material->t)));
-	*attenuation = param.material->albedo;
+	texture_it(param, attenuation);
 	return ((v3_dot_double_(scattered->dir, param.normal) > 0) ? TRUE : FALSE);
 }
 

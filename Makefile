@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/02/24 16:20:38 by vafanass         ###   ########.fr        #
+#    Updated: 2017/02/27 14:51:52 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ SRC =		esdl/color.c\
 			scene/sphere.c\
 			scene/texture_bmp.c\
 			scene/texture.c\
+			scene/texture_calculator.c\
 			utils/list.c\
 			utils/list2.c\
 			utils/utils.c\

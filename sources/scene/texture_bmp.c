@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:56:15 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/25 17:00:26 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/27 15:01:32 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sphere_uv(const t_vec3 p, double *u, double *v)
 	*v = (theta + (M_PI / 2)) / M_PI;
 }
 
-t_vec3 surface_value(SDL_Surface *data, double u, double v)
+t_vec3	surface_value(SDL_Surface *data, double u, double v)
 {
 	t_textvalue	t;
 
@@ -38,9 +38,9 @@ t_vec3 surface_value(SDL_Surface *data, double u, double v)
 	if (t.j > data->h - 1)
 		t.j = data->h - 1;
 	t.pixel = getpixel(data, t.i, t.j);
-	SDL_GetRGB(t.pixel, data->format , &t.ri, &t.gi, &t.bi);
+	SDL_GetRGB(t.pixel, data->format, &t.ri, &t.gi, &t.bi);
 	t.r = t.ri / 255.0;
 	t.g = t.gi / 255.0;
 	t.b = t.bi / 255.0;
-	return(v3_(t.r, t.g, t.b));
+	return (v3_(t.r, t.g, t.b));
 }
