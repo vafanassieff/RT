@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 12:50:44 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/27 16:26:42 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/02/28 19:15:32 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_texture	*new_texture(const UCHAR type_texture, char *filename)
 	if (t->filename != NULL && type_texture == TEXT_IMAGE)
 		t->data = SDL_LoadBMP(filename);
 	else 
-		(t->type_texture == TEXT_NONE);
+		(t->type_texture = TEXT_NONE);
 	return (t);
 }
 
