@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/27 16:00:31 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/02 22:42:23 by qfremeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_ray
 ** Param link object and material for rendering
 */
 
-typedef struct s_hit
+typedef struct	s_hit
 {
 	double			t;
 	double			u;
@@ -38,7 +38,6 @@ typedef struct s_hit
 	struct s_mat	*material;
 	UCHAR           type_obj;
 	void			*p_obj;
-	
 }				t_hit;
 
 /*
@@ -58,22 +57,20 @@ typedef	struct		s_textvalue
 	uint32_t		pixel;
 }					t_textvalue;
 
-/*
-** Material
-*/
-
 typedef	struct		s_texture
 {
 	UCHAR			type_texture;
 	SDL_Surface		*data;
 	char			*filename;
-	void            (*get_uv)(t_vec3 *p, double *u, double *v);
-	void            (*texture_func)();
 	double			u;
 	double			v;
 }					t_texture;
 
-typedef struct s_mat
+/*
+** Materials
+*/
+
+typedef struct	s_mat
 {
 	UCHAR			type_mat;
 	t_texture		*m_text;
@@ -84,27 +81,14 @@ typedef struct s_mat
 }				t_mat;
 
 /*
-** Bounding box
-*/
-
-typedef struct	s_bound_box
-{
-	t_vec3			min;
-	t_vec3			max;
-}				t_bound_box;
-
-/*
 ** Objects
 */
 
-typedef struct	s_plane_xy
+typedef struct	s_plane
 {
-	double		x0;
-	double		x1;
-	double		y0;
-	double		y1;
-	double		k;
-}				t_plane_xy;
+	t_vec3			normale;
+	t_vec3			on_plane;
+}				t_plane;
 
 typedef struct	s_sphere
 {
@@ -113,23 +97,56 @@ typedef struct	s_sphere
 	double			radius2;
 }				t_sphere;
 
+typedef struct	s_cylinder
+{
+	t_vec3			vertex;
+	t_vec3			cp;
+	double			m;
+	double			radius;
+	double			radius2;
+	double			height;
+}				t_cylinder;
+
+typedef struct	s_cone
+{
+	t_vec3			vertex;
+	t_vec3			cp;
+	double			m;
+	double			tang;
+	double			height;
+}				t_cone;
+
+/*
+** Discriminant
+*/
+
+typedef struct	s_discriminant
+{
+	t_vec3			oc;
+	double			a;
+	double			b;
+	double			c;
+	double			discriminant;
+	double			sol;
+	double			m;
+}				t_discriminant;
+
 /*
 ** Scene holder
 */
 
-typedef struct s_obj
+typedef struct	s_obj
 {
 	UCHAR			type_obj;
 	void			*p_obj;
 	BOOL			(*hit)(void*, const t_ray, const double[2], t_hit*);
-	BOOL			(*bound_box)(void*, t_bound_box*, const double, const double);
 	t_mat			*p_mat;
 	char			*name;
 	BOOL			active;
 	double			visible;
 }				t_obj;
 
-typedef struct s_camparam
+typedef struct	s_camparam
 {
 	t_vec3			look_from;
 	t_vec3			look_at;
@@ -196,7 +213,6 @@ typedef struct	s_string
 	struct s_string		*next;
 }				t_string;
 
-
 typedef struct	s_surfparam
 {
 	SDL_Rect		*rect;
@@ -208,7 +224,7 @@ typedef struct	s_surfparam
 typedef struct	s_strparam
 {
 	t_font			font;
-	char*			string;
+	char			*string;
 	int				xy[2];
 	int				i_lst;
 }				t_strparam;
@@ -249,9 +265,9 @@ typedef struct	s_action
 typedef struct	s_viewparam
 {
 	t_scene			scene;
-
 	char			str_obj[128];
 	char			str_pos[128];
+	char			str_rotate[128];
 	char			str_param_o[128];
 	char			str_mat[128];
 	char			str_color[128];
@@ -266,6 +282,14 @@ typedef struct	s_imgparam
 /*
 ** Menu view
 */
+
+typedef struct	s_menu
+{
+	t_surface		*nullsurf;
+	t_string		*nullstring;
+	SDL_Rect		rect;
+	SDL_Rect		rect2;
+}				t_menu;
 
 typedef struct	s_panel
 {
@@ -286,6 +310,16 @@ typedef struct	s_panel
 ** Param for rendering
 */
 
+typedef struct	s_render
+{
+	int				x;
+	int				y;
+	int				s;
+	double			u;
+	double			v;
+	t_vec3			tmp;
+}				t_render;
+
 typedef struct	s_iter
 {
 	int				s;
@@ -293,6 +327,20 @@ typedef struct	s_iter
 	int				y;
 	struct s_iter	*next;
 }				t_iter;
+
+/*
+** Parser
+*/
+
+typedef struct	s_parser
+{
+	int					is_close;
+	char				*bo[NB_BALISE];
+	char				*bc[NB_BALISE];
+	UINT				byte[NB_BALISE];
+	UINT				flag;
+	void				(*f)(t_scene*, char*);
+}				t_parser;
 
 /*
 ** Raytracer main
@@ -303,37 +351,32 @@ typedef struct	s_rt
 	t_esdl			*esdl;
 
 	char			seed[8];
-
+	char			*filename;
+	t_parser		parser;
 	t_scene			*scene;
 	int				sizeof_scn;
 	t_scene			*this_scene;
 
 	SDL_Window		*win_temp;
-	SDL_Texture		*t_load;
-
+	SDL_Texture		*tx_load;
 	SDL_Rect		*r_view;
-	SDL_Surface		*s_view;
-	SDL_Texture		*t_view;
-
+	SDL_Surface		*sr_view;
+	SDL_Texture		*tx_view;
 	SDL_Surface		*s_process;
-	SDL_Texture		*t_process;
-
+	SDL_Texture		*tx_process;
 	SDL_Rect		*r_menu;
-	SDL_Surface		*s_menu;
-	SDL_Texture		*t_menu;
-
+	SDL_Surface		*sr_menu;
+	SDL_Texture		*tx_menu;
 	t_panel			panel;
 
 	BOOL			render;
 	BOOL			suspend;
-
 	t_vec3			**tab;
 	t_iter			*iter;
 	int				limit_iter;
 	void			*stack;
 	int				m_thread;
 	struct s_thread	*t;
-
 	pthread_t		render_th;
 	pthread_mutex_t	mutex;
 	pthread_cond_t	display_cond;

@@ -16,7 +16,7 @@ void	texture_checkboard(t_vec3 pos, t_vec3 *attenuation)
 {
 	float	sines;
 
-	sines = sin(2 * pos.x) *  sin(2 * pos.y) *  sin(2 * pos.z);
+	sines = sin(10 * pos.x) *  sin(10 * pos.y) *  sin(10 * pos.z);
 	if (sines < 0)
 		*attenuation = v3_(0.1, 0.3, 0.1);
 	else

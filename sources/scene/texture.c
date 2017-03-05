@@ -20,9 +20,9 @@ t_texture	*new_texture(const UCHAR type_texture, char *filename)
 	t->type_texture = type_texture;
 	t->filename = filename;
 	if (t->filename != NULL && type_texture == TEXT_IMAGE)
+	{
 		t->data = SDL_LoadBMP(filename);
-	else 
-		(t->type_texture = TEXT_NONE);
+	}
 	return (t);
 }
 
@@ -47,6 +47,6 @@ void	texture_it(const t_hit	param, t_vec3 *attenuation)
 	}
 	else if (param.material->m_text->type_texture == TEXT_CHECKBOARD)
 		texture_checkboard(param.pos, attenuation);
-	else
+	else if (param.material->m_text->type_texture == TEXT_NONE)
 		*attenuation = param.material->albedo;
 }

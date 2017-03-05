@@ -3,34 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 16:18:35 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/24 16:20:07 by vafanass         ###   ########.fr       */
+/*   Created: 2017/02/28 20:25:16 by qfremeau          #+#    #+#             */
+/*   Updated: 2017/03/01 18:38:47 by qfremeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include <rt.h>
 
-uint32_t	getpixel(SDL_Surface *surface, int x, int y)
+char		*ft_uitoa_32bit(UINT lvalue)
 {
-	int		bpp;
-	uint8_t *p;
+	int			x;
+	char		*str;
 
-	bpp = surface->format->BytesPerPixel;
-	p = (uint8_t *)surface->pixels + y * surface->pitch + x * bpp;
-	if (bpp == 1)
-		return (*p);
-	if (bpp == 2)
-		return (*(uint16_t *)p);
-	if (bpp == 3)
+	x = 31;
+	str = ft_strdup("00000000000000000000000000000000");
+	if (lvalue == 0)
+		return (str);
+	while (lvalue > 0)
 	{
-		if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
-			return (p[0] << 16 | p[1] << 8 | p[2]);
+		if (lvalue % 2 >= 10)
+			str[x] = lvalue % 2 - 10 + 'A';
 		else
-			return (p[0] | p[1] << 8 | p[2] << 16);
+			str[x] = lvalue % 2 + '0';
+		lvalue /= 2;
+		--x;
 	}
-	if (bpp == 4)
-		return (*(uint32_t *)p);
-	return (0);
+	return (str);
+}
+
+char		*ft_strtolower(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		s[i] = ft_tolower(s[i]);
+		++i;
+	}
+	return (s);
+}
+
+char		*ft_ltrim(char *s)
+{
+	while (ft_isspace(*s) != 0)
+		s++;
+	return (s);
+}
+
+char		*ft_rtrim(char *s)
+{
+	char	*back;
+
+	back = s + ft_strlen(s);
+	while (ft_isspace(*--back) != 0)
+		*(back + 1) = '\0';
+	return (s);
+}
+
+char		*ft_trim(char *s)
+{
+	return (ft_rtrim(ft_ltrim(s)));
 }

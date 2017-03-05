@@ -26,7 +26,7 @@ void	sphere_uv(const t_vec3 p, double *u, double *v)
 t_vec3	surface_value(SDL_Surface *data, double u, double v)
 {
 	t_textvalue	t;
-
+	
 	t.i = u * data->w;
 	t.j = (1 - v) * data->h - 0.001;
 	if (t.i < 0)

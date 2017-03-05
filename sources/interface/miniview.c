@@ -1,50 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_3dview.c                                        :+:      :+:    :+:   */
+/*   miniview.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:01:12 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/02/20 16:51:55 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/02 19:31:17 by qfremeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		rt_3dview_surface(SDL_Surface *surf, const SDL_Rect *rect, \
-	const int color, void *param)
+void		rt_miniview_surface(SDL_Surface *surf, const SDL_Rect *rect,
+			const int color, void *param)
 {
-	register int	x;
-	register int	y;
-	register int	s;
-	register double	u;
-	register double	v;
-	t_vec3			tp;
+	t_render		t;
 	t_viewparam		*rt;
 
 	(void)color;
 	rt = (t_viewparam*)param;
-	y = 0;
-	while (y < rect->h)
+	t.y = 0;
+	while (t.y < rect->h)
 	{
-		x = 0;
-		tp = v3_(0., 0., 0.);
-		while (x < rect->w)
+		t.x = 0;
+		while (t.x < rect->w)
 		{
-			s = 0;
-			while (s < 10)
+			t.s = 0;
+			while ((t.s)++ < 10)
 			{
-				u = ((double)x + f_random()) / (double)rect->w;
-				v = ((double)y + f_random()) / (double)rect->h;
-				tp = v3_add_vec_(rt_color(ray_from_cam(rt->scene.cam, u, v),
-				&rt->scene, 0, 2), tp);
-				++s;
+				t.u = ((double)t.x + f_rand()) / (double)rect->w;
+				t.v = ((double)t.y + f_rand()) / (double)rect->h;
+				t.tmp = v3_add_vec_(rt_color(ray_from_cam(rt->scene.cam, t.u,
+				t.v), &rt->scene, 0, 2), t.tmp);
 			}
-			tp = v3_scale_vec_(tp, .1);
-			esdl_put_pixel(surf, x, y, esdl_color_to_int(vec3_to_sdlcolor(tp)));
-			++x;
+			t.tmp = v3_scale_vec_(t.tmp, .1);
+			esdl_put_pixel(surf, (t.x)++, t.y, esdl_color_to_int(
+			vec3_to_sdlcolor(t.tmp)));
 		}
-		++y;
+		++(t.y);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/02/27 14:51:52 by vafanass         ###   ########.fr        #
+#    Updated: 2017/01/04 18:11:30 by qfremeau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,30 +71,46 @@ SRC =		esdl/color.c\
 			events/init.c\
 			events/quit.c\
 			events/events.c\
-			interface/3dview.c\
+			events/arrow_lmouse.c\
+			events/arrow_rmouse.c\
+			interface/miniview.c\
 			interface/button.c\
 			interface/menu.c\
+			interface/surface_bkg.c\
+			interface/surface_text.c\
+			interface/surface_button.c\
+			interface/param_object.c\
+			interface/param_material.c\
 			interface/view.c\
+			parser/init.c\
 			parser/scene.c\
+			parser/xml.c\
 			raytracer/random.c\
 			raytracer/ray.c\
 			raytracer/render.c\
 			raytracer/thread.c\
-			scene/bound_box.c\
+			raytracer/thread_tools.c\
+			raytracer/render_thread_tools.c\
+			raytracer/render_tools.c\
 			scene/camera.c\
 			scene/light.c\
 			scene/material.c\
+			scene/scatter.c\
 			scene/object.c\
 			scene/skybox.c\
 			scene/sphere.c\
-			scene/texture_bmp.c\
-			scene/texture.c\
-			scene/texture_calculator.c\
+			scene/plane.c\
+			scene/cylinder.c\
+			scene/cone.c\
 			utils/list.c\
 			utils/list2.c\
 			utils/utils.c\
 			utils/utils2.c\
 			utils/utils3.c\
+			scene/texture_bmp.c\
+			scene/texture.c\
+			scene/texture_calculator.c\
+			utils/util_texture.c\
 			main.c
 
 OBJ =		$(SRC:.c=.o)
@@ -123,7 +139,6 @@ else
 endif
 LIBFT =		-Llibrairies/libft/ -lft
 LIBVEC =	-Llibrairies/libvec/ -lvec
-
 
 # Paths foreach
 OBJP =		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
