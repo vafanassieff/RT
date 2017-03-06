@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/02 22:42:23 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:24:17 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ typedef struct	s_mat
 /*
 ** Objects
 */
+
+typedef	struct	s_paraboloid
+{
+	t_vec3	vertex;
+	double	k;
+	t_vec3	center;
+}				t_paraboloid;
 
 typedef struct	s_plane
 {

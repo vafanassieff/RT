@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:37:29 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/01 14:32:41 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:57:09 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_viewparam		new_viewparam(t_scene *scene)
 	p.scene.obj = (t_obj*)malloc(p.scene.sizeof_obj * sizeof(t_obj));
 	p.scene.obj[0] = copy_object(&scene->obj[0]);
 	p.scene.obj[1] = new_object((void*)new_sphere(v3_(0., 1.5, 0.), .5),
-	OBJ_SPHERE, new_material(v3_(1., 1., 1.), NULL_PARAM, new_texture(TEXT_NONE, NULL)),
+	OBJ_SPHERE, new_material(v3_(1., 1., 1.), NULL_PARAM,
+		new_texture(TEXT_NONE, NULL)),
 	MAT_DIFF_LIGHT);
 	p.scene.this_obj = &p.scene.obj[0];
 	p.scene.sizeof_skb = 1;

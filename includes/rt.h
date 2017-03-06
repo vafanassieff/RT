@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/02 21:43:36 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:57:41 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # include "struct.h"
 
+t_paraboloid    *new_paraboloid(t_vec3 vertex, t_vec3 center, double k);
+BOOL    hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *param);
 /*
 ** Init RT
 */
@@ -139,6 +141,9 @@ t_cam		set_camera(t_vec3 look_from, t_vec3 look_at, t_vec3 v_up,
 ** Texture
 */
 
+void		texture_rainbow(t_vec3 pos, t_vec3 *attenuation);
+void		texture_liney(t_vec3 pos, t_vec3 *attenuation);
+void		texture_linex(t_vec3 pos, t_vec3 *attenuation);
 void    	texture_checkboard(t_vec3 pos, t_vec3 *attenuation);
 void		texture_it(const t_hit  param, t_vec3 *attenuation);
 void		sphere_uv(const t_vec3 p, double *u, double *v);

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/03 14:54:31 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:33:23 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define OBJ_PYRAMID	0x20
 # define OBJ_CYLINDER	0x40
 # define OBJ_SKYBOX		0x80
+# define OBJ_PARABOLOID 0x90
 
 # define SKYBX_NONE		0x0
 # define SKYBX_GRADIENT	0x1
@@ -82,6 +83,9 @@
 # define TEXT_NONE	0x13
 # define TEXT_TEST	0x14
 # define TEXT_CHECKBOARD 0x15
+# define TEXT_LINEY 0x17
+# define TEXT_LINEX 0x18
+# define TEXT_RAINBOW 0x19
 
 # define FILE_DEF		"<!DOCTYPE scn-rt>"
 # define NB_BALISE		22

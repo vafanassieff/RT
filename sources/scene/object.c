@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 00:30:30 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/02 22:12:36 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:52:16 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	*select_hit(const UCHAR t)
 		f = (void*)&hit_cylinder;
 	else if (t == OBJ_CONE)
 		f = (void*)&hit_cone;
+	else if(t == OBJ_PARABOLOID)
+		f = (void*)&hit_paraboloid;
 	else
 		f = (void*)&hit_sphere;
 	return (f);
@@ -90,7 +92,8 @@ t_obj		copy_object(t_obj *obj)
 	o.type_obj = obj->type_obj;
 	o.p_obj = select_obj(o.type_obj);
 	o.hit = select_hit(o.type_obj);
-	o.p_mat = new_material(obj->p_mat->albedo, obj->p_mat->t, obj->p_mat->m_text);
+	o.p_mat = new_material(obj->p_mat->albedo, obj->p_mat->t,
+			obj->p_mat->m_text);
 	o.p_mat->type_mat = obj->p_mat->type_mat;
 	o.p_mat->scatter = select_scatter(o.type_obj);
 	if (o.p_mat->type_mat == MAT_DIFF_LIGHT)

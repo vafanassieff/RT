@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 12:50:44 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/28 19:15:32 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:54:34 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_texture	*new_texture(const UCHAR type_texture, char *filename)
 	return (t);
 }
 
-void	texture_sphere(const t_hit  param, t_vec3 *attenuation)
+void		texture_sphere(const t_hit param, t_vec3 *attenuation)
 {
 	t_vec3		coord;
 	t_sphere	*s;
@@ -38,7 +38,7 @@ void	texture_sphere(const t_hit  param, t_vec3 *attenuation)
 			param.material->m_text->u, param.material->m_text->v);
 }
 
-void	texture_it(const t_hit	param, t_vec3 *attenuation)
+void		texture_it(const t_hit param, t_vec3 *attenuation)
 {
 	if (param.material->m_text->type_texture == TEXT_IMAGE)
 	{
@@ -47,6 +47,12 @@ void	texture_it(const t_hit	param, t_vec3 *attenuation)
 	}
 	else if (param.material->m_text->type_texture == TEXT_CHECKBOARD)
 		texture_checkboard(param.pos, attenuation);
-	else if (param.material->m_text->type_texture == TEXT_NONE)
+	else if (param.material->m_text->type_texture == TEXT_LINEX)
+		texture_linex(param.pos, attenuation);
+	else if (param.material->m_text->type_texture == TEXT_LINEY)
+		texture_liney(param.pos, attenuation);
+	else if (param.material->m_text->type_texture == TEXT_RAINBOW)
+		texture_rainbow(param.pos, attenuation);
+	else
 		*attenuation = param.material->albedo;
 }

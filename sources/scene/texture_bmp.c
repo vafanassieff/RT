@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:56:15 by vafanass          #+#    #+#             */
-/*   Updated: 2017/02/27 16:26:44 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:55:29 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sphere_uv(const t_vec3 p, double *u, double *v)
 {
-	double phi;
-	double theta;
+	double	phi;
+	double	theta;
 
 	phi = atan2(p.x, p.z);
 	theta = asin(p.y);
@@ -23,10 +23,19 @@ void	sphere_uv(const t_vec3 p, double *u, double *v)
 	*v = (theta + (M_PI / 2)) / M_PI;
 }
 
+void	cylinder_uv(const t_vec3 p, double h, double *u, double *v)
+{
+	double	theta;
+
+	theta = atan(p.x / p.y);
+	*u = theta / (2 * M_PI);
+	*v = p.z / h;
+}
+
 t_vec3	surface_value(SDL_Surface *data, double u, double v)
 {
 	t_textvalue	t;
-	
+
 	t.i = u * data->w;
 	t.j = (1 - v) * data->h - 0.001;
 	if (t.i < 0)

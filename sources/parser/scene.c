@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 19:18:42 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/03 13:54:29 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:57:45 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@ static void	default_obj(t_scene *scene)
 	scene->obj = (t_obj*)malloc(scene->sizeof_obj * sizeof(t_obj));
 	scene->obj[0] = new_object((void*)new_plane(v3_(0., 1., 0.), v3_(0., 0.,
 	0.)), OBJ_PLANE, new_material(v3_(1., .2, .2), 0., new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
-	scene->obj[1] = new_object((void*)new_cylinder(v3_(0., 1., 0.), v3_(0., 0., 0.),
-	1., 1.), OBJ_CYLINDER, new_material(v3_(1., 1., 1.), 0., new_texture(TEXT_CHECKBOARD, NULL)), MAT_LAMBERT);
+	scene->obj[1] = new_object((void*)new_paraboloid(v3_(0., 1., 0.), v3_(0., 0., 0.), 1.), OBJ_PARABOLOID,
+	new_material(v3_(0., 1., 0.), 0., new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
+	//scene->obj[1] = new_object((void*)new_cylinder(v3_(0., 1., 0.), v3_(0., 0., 0.),
+	//1., 1.), OBJ_CYLINDER, new_material(v3_(1., 1., 1.), 0., new_texture(TEXT_LINEY, NULL)), MAT_LAMBERT);
 	scene->obj[2] = new_object((void*)new_sphere(v3_(5., 2., 0.), 4.),
-	OBJ_SPHERE, new_material(v3_(.1, 1., 1.), .0, new_texture(TEXT_IMAGE, "./earthmap.bmp")), MAT_LAMBERT);
-	//scene->obj[3] = new_object((void*)new_sphere(v3_(0., 1., 4.), 1.),
-	//OBJ_SPHERE, new_material(v3_(1., .2, 1.), 0.), MAT_LAMBERT);
+	OBJ_SPHERE, new_material(v3_(.1, 1., 1.), .0, new_texture(TEXT_LINEX, "./earthmap.bmp")), MAT_LAMBERT);
+	//scene->obj[3] = new_object((void*)new_sphere(v3_(0., 1., 4.), 4.),
+	//OBJ_SPHERE, new_material(v3_(-5., .2, -1.), 0., new_texture(TEXT_RAINBOW, NULL)), MAT_LAMBERT);
 	//scene->obj[4] = new_object((void*)new_sphere(v3_(-1., .5, -1.), .5),
 	//OBJ_SPHERE, new_material(v3_(1., 1., .2), 0.), MAT_LAMBERT);
-	//scene->obj[5] = new_object((void*)new_cone(v3_(0., 1., 0.), v3_(5., 1.,
-	//-2.), .2, 4.), OBJ_CONE, new_material(v3_(.3, .5, .1), 0.), MAT_METAL);
+	//scene->obj[4] = new_object((void*)new_cone(v3_(-1.0, -0.9, 0.), v3_(-5., 1.,
+	//-2.), .2, 4.), OBJ_CONE, new_material(v3_(.3, .5, .1), 0., new_texture(TEXT_LINEY, NULL)), MAT_LAMBERT);
 	//scene->this_obj = &scene->obj[2];
 }
 
@@ -35,7 +37,7 @@ static void	default_scene(t_rt *rt, t_scene *scene)
 {
 	scene->sizeof_cam = 1;
 	scene->cam = (t_cam*)malloc(scene->sizeof_cam * sizeof(t_cam));
-	scene->cam[0] = set_camera(v3_(-5., 1., -10.), v3_(0., 0., 0.), v3_(0., -1.,
+	scene->cam[0] = set_camera(v3_(-10., 1., -10.), v3_(0., 0., 0.), v3_(0., -1.,
 	0.), camparam(60., (double)rt->r_view->w / (double)rt->r_view->h, .0,
 	v3_lenght_double_(v3_sub_vec_(v3_(13., 2., 3.), v3_(0., 0., 0.)))));
 	scene->this_cam = &scene->cam[0];
