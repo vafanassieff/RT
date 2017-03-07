@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/03/06 17:26:28 by vafanass         ###   ########.fr        #
+#    Updated: 2017/03/07 13:34:07 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC =		esdl/color.c\
 			scene/plane.c\
 			scene/cylinder.c\
 			scene/cone.c\
+			scene/paraboloid.c\
 			scene/ellipsoid.c\
 			utils/list.c\
 			utils/list2.c\

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/06 17:33:23 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/07 13:30:05 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 # define OBJ_CYLINDER	0x40
 # define OBJ_SKYBOX		0x80
 # define OBJ_PARABOLOID 0x90
+# define OBJ_ELLIPSOID 0x91
 
 # define SKYBX_NONE		0x0
 # define SKYBX_GRADIENT	0x1

@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/06 17:57:41 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/07 13:45:54 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # include "struct.h"
 
+t_ellipsoid *new_ellipsoid(t_vec3 center, t_vec3 vertex, double k, double radius);
+BOOL    hit_ellispoid(void *obj, const t_ray ray, const double t[2], t_hit *param);
 t_paraboloid    *new_paraboloid(t_vec3 vertex, t_vec3 center, double k);
 BOOL    hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *param);
 /*
