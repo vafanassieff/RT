@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 19:18:42 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/07 13:54:07 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/07 15:55:56 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	default_obj(t_scene *scene)
 	//0.)), OBJ_PLANE, new_material(v3_(1., .2, .2), 0., new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
 	//scene->obj[0] = new_object((void*)new_paraboloid(v3_(0.0, -0.1, 0.), v3_(0., 0., 0.), .1), OBJ_PARABOLOID,
 	//new_material(v3_(.9, 0.1, 0.2), 0., new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
-	scene->obj[0] = new_object((void*)new_ellipsoid(v3_(0., 0., 0.), v3_(0., 1., 0.), 3., 4.), OBJ_ELLIPSOID,
-	new_material(v3_(0.9, 0.2, 0.2), 0., new_texture(TEXT_LINEX, NULL)), MAT_LAMBERT);
+	scene->obj[0] = new_object((void*)new_ellipsoid(v3_(0., 0., 0.), v3_(0., -1., 0.), 4., 4.), OBJ_ELLIPSOID,
+	new_material(v3_(0.9, 0.2, 0.2), 0., new_texture(TEXT_NONE, NULL)), MAT_LAMBERT);
 	//scene->obj[1] = new_object((void*)new_cylinder(v3_(0., 1., 0.), v3_(0., 0., 0.),
 	//1., 1.), OBJ_CYLINDER, new_material(v3_(1., 1., 1.), 0., new_texture(TEXT_LINEY, NULL)), MAT_LAMBERT);
 	//scene->obj[2] = new_object((void*)new_sphere(v3_(5., 2., 0.), 4.),

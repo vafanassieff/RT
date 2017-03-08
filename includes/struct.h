@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/07 13:32:42 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:17:31 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ typedef struct	s_hit
 	UCHAR           type_obj;
 	void			*p_obj;
 }				t_hit;
+
+typedef	struct		s_filtervalue
+{
+	int				x;
+	int				y;
+	uint8_t			r;
+	uint8_t			g;
+	uint8_t			b;
+	uint8_t			v;
+	float			rtmp;
+	float			gtmp;
+	float			btmp;
+	uint32_t		pixel;
+	uint32_t		*pixels;
+}					t_filtervalue;
 
 /*
 ** Only used in image_texture_value()

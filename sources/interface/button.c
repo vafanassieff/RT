@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 16:22:20 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/02 22:42:17 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:23:36 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void		button_render(void *param)
 	}
 	else
 		rt->suspend = FALSE;
+}
+
+void		button_filter(void *param)
+{
+	t_rt			*rt;
+	SDL_Surface		tmp;
+	t_filtervalue	f;
+	
+	rt = (void*)param;
+	SDL_BlitSurface(rt->sr_view, NULL, &tmp, NULL);
+	filter_sepia(rt, &f);
+	rt->render = TRUE;
+	display_rt(rt);
+
 }
 
 void		button_snap(void *param)

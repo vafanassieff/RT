@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 21:26:31 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/02 21:55:42 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:54:43 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	draw_button2(t_rt *rt, t_menu *m)
 		lst_new_image(&m->nullsurf, surfparam(&m->rect, 0,
 			&rt->panel.imgparam, 0), rt->esdl->eng.render, esdl_load_texture),
 		&m->rect2, 0),
-	rt->esdl->eng.render, actionparam((void*)rt, button_render));
+	rt->esdl->eng.render, actionparam((void*)rt, button_filter));
 }
 
 void		draw_button_surface(t_rt *rt, t_menu *m)
