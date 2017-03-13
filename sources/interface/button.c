@@ -44,6 +44,27 @@ void		button_render(void *param)
 		rt->suspend = FALSE;
 }
 
+void		button_filter(void *param)
+{
+	t_rt			*rt;
+	t_filtervalue	f;
+	static	int		reset;
+
+	rt = (void*)param;
+	if (reset >= 3)
+		reset = 0;
+	if (reset == 0)
+		filter_sepia(rt, &f);
+	else if (reset == 1)
+		filter_greyscale(rt, &f);
+	else if (reset == 2)
+		filter_negative(rt, &f);
+	reset++;
+	rt->render = TRUE;
+	display_rt(rt);
+
+}
+
 void		button_snap(void *param)
 {
 	static int	i = 0;

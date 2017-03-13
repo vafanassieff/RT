@@ -128,6 +128,10 @@ t_action	actionparam(void *param, void (f)(void*));
 
 void		button_render(void *param);
 void		button_snap(void *param);
+void        button_filter(void *param);
+void    	filter_negative(t_rt *rt, t_filtervalue *f);
+void    	filter_sepia(t_rt *rt, t_filtervalue *f);
+void    	filter_greyscale(t_rt *rt, t_filtervalue *f);
 
 /*
 ** Raytracer rendering
@@ -230,6 +234,25 @@ t_cone		*new_cone(t_vec3 vertex, t_vec3 cp, const double tang,
 			const double height);
 BOOL		hit_cone(void *obj, const t_ray ray, const double t[2],
 			t_hit *param);
+
+t_ellipsoid	*new_ellipsoid(t_vec3 center, t_vec3 vertex, double k, double radius);
+BOOL    	hit_ellispoid(void *obj, const t_ray ray, const double t[2], t_hit *param);
+t_paraboloid	*new_paraboloid(t_vec3 vertex, t_vec3 center, double k);
+BOOL    	hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *param);
+
+/*
+** Texture
+*/
+
+void		texture_rainbow(t_vec3 pos, t_vec3 *attenuation);
+void		texture_liney(t_vec3 pos, t_vec3 *attenuation);
+void		texture_linex(t_vec3 pos, t_vec3 *attenuation);
+void    	texture_checkboard(t_vec3 pos, t_vec3 *attenuation);
+void		texture_it(const t_hit  param, t_vec3 *attenuation);
+void		sphere_uv(const t_vec3 p, double *u, double *v);
+t_vec3		surface_value(SDL_Surface *data, double u, double v);
+uint32_t	getpixel(SDL_Surface *surface, int x, int y);
+t_texture	*new_texture(const UCHAR type_texture, char *filename);
 
 /*
 ** Materials

@@ -35,8 +35,36 @@ typedef struct	s_hit
 	int				i_lst;
 	t_vec3			pos;
 	t_vec3			normal;
+	UCHAR           type_obj;
+	void			*p_obj;	
 	struct s_mat	*material;
 }				t_hit;
+
+/*
+** Texture
+*/
+
+typedef	struct		s_textvalue
+{
+	int				i;
+	int				j;
+	float			r;
+	float			g;
+	float			b;
+	uint8_t			ri;
+	uint8_t			gi;
+	uint8_t			bi;
+	uint32_t		pixel;
+}					t_textvalue;
+
+typedef	struct		s_texture
+{
+	UCHAR			type_texture;
+	SDL_Surface		*data;
+	char			*filename;
+	double			u;
+	double			v;
+}					t_texture;
 
 /*
 ** Materials
@@ -45,6 +73,7 @@ typedef struct	s_hit
 typedef struct	s_mat
 {
 	UCHAR			type_mat;
+	t_texture		*m_text;
 	t_vec3			albedo;
 	t_vec3			emitted;
 	double			t;
@@ -87,6 +116,22 @@ typedef struct	s_cone
 	double			height;
 }				t_cone;
 
+typedef struct s_ellipsoid
+{
+	t_vec3	center;
+	t_vec3	vertex;
+	double	k;
+	double	radius;
+	double	radius2;
+}				t_ellipsoid;
+
+typedef	struct	s_paraboloid
+{
+	t_vec3	vertex;
+	double	k;
+	t_vec3	center;
+}				t_paraboloid;
+
 /*
 ** Discriminant
 */
@@ -101,6 +146,25 @@ typedef struct	s_discriminant
 	double			sol;
 	double			m;
 }				t_discriminant;
+
+/*
+** Filter Structure
+*/
+
+typedef	struct		s_filtervalue
+{
+	int				x;
+	int				y;
+	uint8_t			r;
+	uint8_t			g;
+	uint8_t			b;
+	uint8_t			v;
+	float			rtmp;
+	float			gtmp;
+	float			btmp;
+	uint32_t		pixel;
+	uint32_t		*pixels;
+}					t_filtervalue;
 
 /*
 ** Scene holder

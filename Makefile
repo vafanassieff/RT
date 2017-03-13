@@ -82,6 +82,7 @@ SRC =		esdl/color.c\
 			interface/param_object.c\
 			interface/param_material.c\
 			interface/view.c\
+			interface/filter.c\
 			parser/init.c\
 			parser/default.c\
 			parser/scene.c\
@@ -125,6 +126,11 @@ SRC =		esdl/color.c\
 			scene/plane.c\
 			scene/cylinder.c\
 			scene/cone.c\
+			scene/texture.c\
+			scene/texture_bmp.c\
+			scene/texture_calculator.c\
+			scene/paraboloid.c\
+			scene/ellipsoid.c\
 			utils/list.c\
 			utils/list2.c\
 			utils/utils.c\
@@ -132,6 +138,7 @@ SRC =		esdl/color.c\
 			utils/utils3.c\
 			utils/utils4.c\
 			utils/utils5.c\
+			utils/util_texture.c\
 			main.c
 
 OBJ =		$(SRC:.c=.o)

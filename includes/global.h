@@ -65,6 +65,8 @@
 # define OBJ_PYRAMID	0x20
 # define OBJ_CYLINDER	0x40
 # define OBJ_SKYBOX		0x80
+# define OBJ_PARABOLOID 0x90
+# define OBJ_ELLIPSOID 0x91
 
 # define SKYBX_NONE		0x1
 # define SKYBX_GRADIENT	0x2
@@ -77,6 +79,14 @@
 # define MAT_METAL		0x2
 # define MAT_DIELECT	0x4
 # define MAT_DIFF_LIGHT	0x8
+
+# define TEXT_IMAGE	0x12
+# define TEXT_NONE	0x13
+# define TEXT_TEST	0x14
+# define TEXT_CHECKBOARD 0x15
+# define TEXT_LINEY 0x17
+# define TEXT_LINEX 0x18
+# define TEXT_RAINBOW 0x19
 
 # define FILE_DEF		"<?DOCTYPE scn-rt?>"
 

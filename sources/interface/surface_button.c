@@ -51,7 +51,7 @@ static void	draw_button2(t_rt *rt, t_menu *m)
 		lst_new_image(&m->nullsurf, surfparam(&m->rect, 0,
 			&rt->panel.imgparam, 0), rt->esdl->eng.render, esdl_load_texture),
 		&m->rect2, 0),
-	rt->esdl->eng.render, actionparam((void*)rt, button_render));
+	rt->esdl->eng.render, actionparam((void*)rt, button_filter));
 	free(i);
 }
 
