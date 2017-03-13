@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 16:22:20 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/09 14:25:27 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:20:48 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		button_filter(void *param)
 	static	int		reset;
 
 	rt = (void*)param;
-	if (reset == 3)
+	if (reset >= 3)
 		reset = 0;
 	if (reset == 0)
 		filter_sepia(rt, &f);
