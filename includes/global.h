@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/09 21:09:09 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:32:43 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 # define OBJ_CYLINDER	0x40
 # define OBJ_SKYBOX		0x80
 # define OBJ_PARABOLOID 0x90
-# define OBJ_ELLIPSOID 0x91
+# define OBJ_ELLIPSOID	0x91
 
 # define SKYBX_NONE		0x1
 # define SKYBX_GRADIENT	0x2
@@ -99,10 +99,13 @@
 # define BO_PLANE		"<plane>"
 # define BO_CYLINDER	"<cylinder>"
 # define BO_CONE		"<cone>"
+# define BO_ELLIPSOID   "<ellipsoid>"
+# define BO_PARABOLOID	"<paraboloid>"
 # define BO_RADIUS		"<radius>"
 # define BO_POS			"<pos>"
 # define BO_ROTATE		"<rotate>"
 # define BO_LAMBERT		"<lambert>"
+# define BO_HEIGHT		"<height>"
 # define BO_METAL		"<metal>"
 # define BO_DIELECT		"<dielectric>"
 # define BO_DIFFLIGHT	"<difflight>"
@@ -120,10 +123,12 @@
 # define BC_SPHERE		"</sphere>"
 # define BC_PLANE		"</plane>"
 # define BC_CYLINDER	"</cylinder>"
+# define BC_PARABOLOID  "</paraboloid>"
 # define BC_CONE		"</cone>"
 # define BC_RADIUS		"</radius>"
 # define BC_POS			"</pos>"
 # define BC_ROTATE		"</rotate>"
+# define BC_HEIGHT		"</height>"
 # define BC_LAMBERT		"</lambert>"
 # define BC_METAL		"</metal>"
 # define BC_DIELECT		"</dielectric>"
@@ -132,6 +137,7 @@
 # define BC_PARAM		"</param>"
 # define BC_SKYBOX		"</skybox>"
 # define BC_GRADIENT	"</gradient>"
+# define BC_ELLIPSOID   "</ellipsoid>"
 # define BC_NONE		"</none>"
 
 # define BYTE_CAM		((UINT)1 << 0)
@@ -144,16 +150,18 @@
 # define BYTE_PLANE		((UINT)1 << 7)
 # define BYTE_CYLINDER	((UINT)1 << 8)
 # define BYTE_CONE		((UINT)1 << 9)
-# define BYTE_RADIUS	((UINT)1 << 10)
-# define BYTE_POS		((UINT)1 << 11)
-# define BYTE_ROTATE	((UINT)1 << 12)
-# define BYTE_LAMBERT	((UINT)1 << 13)
-# define BYTE_METAL		((UINT)1 << 14)
-# define BYTE_DIELECT	((UINT)1 << 15)
-# define BYTE_DIFFLIGHT	((UINT)1 << 16)
-# define BYTE_COLOR		((UINT)1 << 17)
-# define BYTE_PARAM		((UINT)1 << 18)
-# define BYTE_GRADIENT	((UINT)1 << 19)
-# define BYTE_NONE		((UINT)1 << 20)
+# define BYTE_ELLIPSOID ((UINT)1 << 10)
+# define BYTE_RADIUS	((UINT)1 << 11)
+# define BYTE_POS		((UINT)1 << 12)
+# define BYTE_ROTATE	((UINT)1 << 13)
+# define BYTE_HEIGHT    ((UINT)1 << 14)
+# define BYTE_LAMBERT	((UINT)1 << 15)
+# define BYTE_METAL		((UINT)1 << 16)
+# define BYTE_DIELECT	((UINT)1 << 17)
+# define BYTE_DIFFLIGHT	((UINT)1 << 18)
+# define BYTE_COLOR		((UINT)1 << 19)
+# define BYTE_PARAM		((UINT)1 << 20)
+# define BYTE_GRADIENT	((UINT)1 << 21)
+# define BYTE_NONE		((UINT)1 << 22)
 
 #endif

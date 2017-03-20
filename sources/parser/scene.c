@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 19:18:42 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/09 22:36:18 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/13 15:38:47 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_scene	default_scene(t_rt *rt)
 {
 	t_scene		scene;
 
-	scene.sizeof_obj = 6;
-	rt->parser.lim_obj = 6;
+	scene.sizeof_obj = 7;
+	rt->parser.lim_obj = 7;
 	scene.obj = (t_obj*)malloc(scene.sizeof_obj * sizeof(t_obj));
 	default_obj(&scene);
 	default_cam(rt, &scene);

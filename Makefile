@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/01/04 18:11:30 by qfremeau         ###   ########.fr        #
+#    Updated: 2017/03/20 14:50:58 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ PRECOMP =	stdafx.h
 DEFRULE =	all
 
 # Binary
-NAME =		rtv1
+NAME =		rt
 DST =		
 
 # Directories
@@ -96,6 +96,7 @@ SRC =		esdl/color.c\
 			parser/plane.c\
 			parser/cylinder.c\
 			parser/cone.c\
+			parser/ellipsoid.c\
 			parser/lambert.c\
 			parser/metal.c\
 			parser/difflight.c\
@@ -105,6 +106,7 @@ SRC =		esdl/color.c\
 			parser/bc_plane.c\
 			parser/bc_cylinder.c\
 			parser/bc_cone.c\
+			parser/bc_ellipsoid.c\
 			parser/bc_lambert.c\
 			parser/bc_metal.c\
 			parser/bc_difflight.c\
@@ -139,6 +141,8 @@ SRC =		esdl/color.c\
 			utils/utils4.c\
 			utils/utils5.c\
 			utils/util_texture.c\
+			utils/util_filter.c\
+			utils/util_matrice_filter.c\
 			main.c
 
 OBJ =		$(SRC:.c=.o)

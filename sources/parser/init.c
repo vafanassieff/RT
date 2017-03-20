@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:54:16 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/09 20:30:16 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:32:38 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ static void		init_xmlbo(t_rt *rt, int i)
 	rt->parser.bo[i++] = ft_strdup(BO_PLANE);
 	rt->parser.bo[i++] = ft_strdup(BO_CYLINDER);
 	rt->parser.bo[i++] = ft_strdup(BO_CONE);
+	rt->parser.bo[i++] = ft_strdup(BO_ELLIPSOID);
+	//rt->parser.bo[i++] = ft_strdup(BO_PARABOLOID);
 	rt->parser.bo[i++] = ft_strdup(BO_RADIUS);
 	rt->parser.bo[i++] = ft_strdup(BO_POS);
 	rt->parser.bo[i++] = ft_strdup(BO_ROTATE);
+	rt->parser.bo[i++] = ft_strdup(BO_HEIGHT);
 	rt->parser.bo[i++] = ft_strdup(BO_LAMBERT);
 	rt->parser.bo[i++] = ft_strdup(BO_METAL);
 	rt->parser.bo[i++] = ft_strdup(BO_DIELECT);
@@ -52,9 +55,12 @@ static void		init_xmlbc(t_rt *rt, int i)
 	rt->parser.bc[i++] = ft_strdup(BC_PLANE);
 	rt->parser.bc[i++] = ft_strdup(BC_CYLINDER);
 	rt->parser.bc[i++] = ft_strdup(BC_CONE);
+	rt->parser.bc[i++] = ft_strdup(BC_ELLIPSOID);
+	//rt->parser.bo[i++] = ft_strdup(BC_PARABOLOID);
 	rt->parser.bc[i++] = ft_strdup(BC_RADIUS);
 	rt->parser.bc[i++] = ft_strdup(BC_POS);
 	rt->parser.bc[i++] = ft_strdup(BC_ROTATE);
+	rt->parser.bc[i++] = ft_strdup(BC_HEIGHT);
 	rt->parser.bc[i++] = ft_strdup(BC_LAMBERT);
 	rt->parser.bc[i++] = ft_strdup(BC_METAL);
 	rt->parser.bc[i++] = ft_strdup(BC_DIELECT);
@@ -70,7 +76,7 @@ static void		init_xmlbc(t_rt *rt, int i)
 void			init_xml(t_rt *rt)
 {
 	register int		i;
-
+	
 	rt->parser.byte = (UINT*)malloc(sizeof(UINT) * (E_TAB_LAST));
 	rt->parser.bo = (char**)malloc(sizeof(char*) * (E_TAB_LAST));
 	rt->parser.bc = (char**)malloc(sizeof(char*) * (E_TAB_LAST));

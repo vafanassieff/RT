@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 22:19:12 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/09 22:30:01 by qfremeau         ###   ########.fr       */
+/*   Updated: 2017/03/13 16:45:46 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void		default_obj(t_scene *scene)
 	OBJ_SPHERE, new_material(v3_(1., 1., .2), 0.), MAT_LAMBERT);
 	scene->obj[5] = new_object((void*)new_cone(v3_(0., 1., 0.), v3_(5., 1.,
 	-2.), .2, 4.), OBJ_CONE, new_material(v3_(.3, .5, .1), 0.), MAT_METAL);
+	scene->obj[6] = new_object((void*)new_ellipsoid(v3_(0., 3., -5), v3_(0. , 1.0, 0.),
+	2.0, 5.0), OBJ_ELLIPSOID, new_material(v3_(0.9, 0.1, 0.2), 0.), MAT_LAMBERT);
 	scene->this_obj = &scene->obj[2];
 }
 
@@ -45,7 +47,7 @@ void		default_skybox(t_rt *rt, t_scene *scene)
 	scene->sizeof_skb = 1;
 	rt->parser.lim_skb = 1;
 	scene->skybox = (t_skybox*)malloc(scene->sizeof_skb * sizeof(t_skybox));
-	scene->skybox[0] = new_skybox(v3_(0., 0., 0.), v3_(0., 0., 0.),
+	scene->skybox[0] = new_skybox(v3_(1., 1., 1.), v3_(0., 0., 0.),
 	SKYBX_NONE);
 	scene->this_skb = &scene->skybox[0];
 }

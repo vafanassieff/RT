@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:27:05 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/12 17:37:49 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/20 18:05:25 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,81 +83,49 @@ void	filter_negative(t_rt *rt, t_filtervalue *f)
 	}
 }
 
-/*int	min(int a, int b)
+void	filter_matrice(t_rt *rt, t_filtervalue *f, t_matrixf t)
 {
-	if (a < b)
-		return (b);
-	return (a);
-}
+	t_filtermatrice	m;
 
-int		max(int a, int b)
-{
-	if (a > b)
-		return (b);
-	return (a);
-}
-
-void	filter_motionblur(t_rt *rt, t_filtervalue *f)
-{
-	int		filterx;
-	int		filtery;
-	int		imagex;
-	int		imagey;
-	int		maricewidth;
-	int		matriceheigth;
-	double r;
-	double g;
-	double b;
-	double factor;
-	double bias;
-
-	int red;
-	int green;
-	int	blue;
-
-	maricewidth = 5;
-	matriceheigth = 5;
-	factor = 1.0;
-	bias = 0;
-	double matrice[5][5] =
-	{
-		0, 0, 1, 0, 0,
-		0, 1, 1, 1, 0,
-		1, 1, 1, 1, 1,
-		0, 1, 1, 1, 0,
-		0, 0, 1, 0, 0,
-	};
+	init_filter(&m, t.size, t.factor);
 	f->pixels = (Uint32 *)rt->sr_view->pixels;
-	f->y = 0;
+	f->y = -1;
+	int kekus = 0;
+	int kek = 0;
+	printf("\n\n");
 	while (++f->y < rt->sr_view->h)
 	{
 		f->x = -1;
-		 while (++f->x < rt->sr_view->w)
+		while (++f->x < rt->sr_view->w)
 		{
-			r = 0.0, g = 0.0,  b = 0.0;
-			filtery = 0;
-			while (filtery < 5)
+			reset_rgb(&m);
+			while (m.filtery++ < t.size)
 			{
-				filterx = 0;
-				while (filterx < 5)
+				m.filterx = -1;
+				while (m.filterx++ < t.size)
 				{
-					imagex = (f->x - maricewidth / 2 + filterx + rt->sr_view->w) % rt->sr_view->w;
-					imagey = (f->y - matriceheigth / 2 + filtery + rt->sr_view->h) % rt->sr_view->h;
-					f->pixel = f->pixels[imagey * rt->sr_view->w + imagex];
+					m.imagex = (f->x - m.matricewidth / 2 + m.filterx + rt->sr_view->w) % rt->sr_view->w;
+					m.imagey = (f->y - m.matriceheigth / 2 + m.filtery + rt->sr_view->h) % rt->sr_view->h;
+					f->pixel = f->pixels[m.imagey * rt->sr_view->w + m.imagex];
 					f->b = f->pixel >> 16 & 0xFF;
 					f->g = f->pixel >> 8 & 0xFF;
 					f->r = f->pixel & 0xFF;
-					b += f->b * matrice[filtery][filterx];
-					g += f->g * matrice[filtery][filterx];
-					r += f->r * matrice[filtery][filterx];
+					m.b += f->b * t.matrice[m.filtery * (t.size + 1) + m.filterx];
+					m.g += f->g * t.matrice[m.filtery * (t.size + 1) +  m.filterx];
+					m.r += f->r * t.matrice[m.filtery * (t.size + 1) + m.filterx];
+					kek++;	
+					if (kekus == 0)
+						printf("%d ", (int)t.matrice[m.filtery * (t.size + 1)  + m.filterx]);
 				}
-				
+				  if (kekus == 0)
+					  printf("\n");
 			}
-				red = min(max((int)(factor * r + bias), 0), 255);
-				green = min(max((int)(factor * g + bias), 0), 255);
-				blue = min(max((int)(factor * b + bias), 0), 255);
-				f->pixel = (0xFF << 24) | (blue << 16) | (green << 8) | red;
-				esdl_put_pixel(rt->s_process, f->x, f->y, (int)f->pixel);
-			}
+			kekus = 1;
+			m.red = min(max((int)(m.factor * m.r + m.bias), 0), 255);
+			m.green = min(max((int)(m.factor * m.g + m.bias), 0), 255);
+			m.blue = min(max((int)(m.factor * m.b + m.bias), 0), 255);
+			f->pixel = (0xFF << 24) | (m.blue << 16) | (m.green << 8) | m.red;
+			esdl_put_pixel(rt->s_process, f->x, f->y, (int)f->pixel);
+		}
 	}
-}*/
+}
