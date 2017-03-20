@@ -9,14 +9,15 @@
 </camera>
 
 <obj>
-	<paraboloid>
+	<ellipsoid>
 		<pos>0.0 0.0 0.0</pos>
 		<rotate>0 1.0 0</rotate>
 		<height>1.0</height>
+		<radius>0.9</radius>
 		<lambert>
 			<color>0.9 0.2 0.2</color>
 		</lambert>
-	</paraboloid>
+	</ellipsoid>
 </obj>
 
 <skybox>
