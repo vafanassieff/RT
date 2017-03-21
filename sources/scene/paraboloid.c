@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 15:33:08 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/13 17:06:10 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 18:32:40 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ BOOL	hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *param)
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant >= 0)
 	{
-		sol = (-b - sqrt(discriminant) / (2.0 * a));
+		sol = ((-b - sqrt(discriminant)) / (2.0 * a));
 		if (sol < t[1] && sol > t[0])
 			return (normal_paraboloid(p, ray, param, sol,oc));
-		sol = (-b + sqrt(discriminant) / (2.0 * a));
+		sol = ((-b + sqrt(discriminant)) / (2.0 * a));
 		if (sol < t[1] && sol > t[0])
 			return (normal_paraboloid(p, ray, param, sol, oc));
 	}

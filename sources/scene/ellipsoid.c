@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 12:58:15 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/13 15:03:08 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 18:24:50 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ BOOL	hit_ellispoid(void *obj, const t_ray ray, const double t[2], t_hit *param)
 	e = (t_ellipsoid*)obj;
 	oc = v3_sub_vec_(ray.orig, e->center);
 	A1 = 2 * e->k * (v3_dot_double_(ray.dir, e->vertex));
-	A2 = e->radius2 + 2 * e->k * v3_dot_double_(oc, e->vertex) - e->k;
-	a = 4 * e->radius2 * v3_dot_double_(ray.dir, ray.dir) - (A1 * A1);
-	b = 2 * (4 * e->radius2 * v3_dot_double_(ray.dir, oc) - (A1 * A2));
-	c = 4 * e->radius2 * v3_dot_double_(oc, oc) - (A2 * A2);
+	A2 = e->radius2 + (2 * e->k * v3_dot_double_(oc, e->vertex)) - e->k;
+	a = (4 * e->radius2 * v3_dot_double_(ray.dir, ray.dir)) - (A1 * A1);
+	b = 2 * ((4 * e->radius2 * v3_dot_double_(ray.dir, oc)) - (A1 * A2));
+	c = (4 * e->radius2 * v3_dot_double_(oc, oc)) - (A2 * A2);
 	discriminant = (b * b) - (4.0 * a * c);
 	if (discriminant >= 0)
 	{
-		sol = (-b - sqrt(discriminant) / (2.0 * a));
+		sol = (-b - sqrt(discriminant)) / (2.0 * a);
 		if (sol < t[1] && sol > t[0])
 			return (normal_ellipsoid(e, ray, param, sol, a, b));
-		sol = (-b + sqrt(discriminant) / (2.0 * a));
+		sol = (-b + sqrt(discriminant)) / (2.0 * a);
 		if (sol < t[1] && sol > t[0])
 			return (normal_ellipsoid(e, ray, param, sol, a, b));
 	}
