@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/20 18:13:29 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:52:22 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@
 # define BO_DIFFLIGHT	"<difflight>"
 # define BO_COLOR		"<color>"
 # define BO_PARAM		"<param>"
+# define BO_TEXTURE		"<texture>"
 # define BO_SKYBOX		"<skybox>"
 # define BO_GRADIENT	"<gradient>"
 # define BO_NONE		"<none>"
@@ -135,6 +136,7 @@
 # define BC_DIFFLIGHT	"</difflight>"
 # define BC_COLOR		"</color>"
 # define BC_PARAM		"</param>"
+# define BC_TEXTURE     "</texture>"
 # define BC_SKYBOX		"</skybox>"
 # define BC_GRADIENT	"</gradient>"
 # define BC_ELLIPSOID   "</ellipsoid>"
@@ -151,6 +153,7 @@
 # define BYTE_CYLINDER	((UINT)1 << 8)
 # define BYTE_CONE		((UINT)1 << 9)
 # define BYTE_ELLIPSOID ((UINT)1 << 10)
+//# define BYTE_PARABOLOID ((UINT)1 <<30)
 # define BYTE_RADIUS	((UINT)1 << 11)
 # define BYTE_POS		((UINT)1 << 12)
 # define BYTE_ROTATE	((UINT)1 << 13)
@@ -162,6 +165,36 @@
 # define BYTE_COLOR		((UINT)1 << 19)
 # define BYTE_PARAM		((UINT)1 << 20)
 # define BYTE_GRADIENT	((UINT)1 << 21)
-# define BYTE_NONE		((UINT)1 << 22)
+# define BYTE_NONE		((UINT)1 << 31)
+
+enum			e_bytetab
+{
+	E_TAB_VOID = 0,
+	E_TAB_CAM,
+	E_TAB_OBJ,
+	E_TAB_SKYBOX,
+	E_TAB_FOV,
+	E_TAB_TARGET,
+	E_TAB_APERT,
+	E_TAB_SPHERE,
+	E_TAB_PLANE,
+	E_TAB_CYLINDER,
+	E_TAB_CONE,
+	E_TAB_ELLIPSOID,
+	//E_TAB_PARABOLOID,
+	E_TAB_RADIUS,
+	E_TAB_POS,
+	E_TAB_ROTATE,
+	E_TAB_HEIGHT,
+	E_TAB_LAMBERT,
+	E_TAB_METAL,
+	E_TAB_DIELECT,
+	E_TAB_DIFFLIGHT,
+	E_TAB_COLOR,
+	E_TAB_PARAM,
+	E_TAB_GRADIENT,
+	E_TAB_NONE,
+	E_TAB_LAST
+};
 
 #endif

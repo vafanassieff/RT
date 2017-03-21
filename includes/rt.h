@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 11:24:33 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:52:17 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void		bo_ellipsoid_pos(t_scene *s, t_parser *p, char *line);
 void		bo_ellipsoid_rotate(t_scene *s, t_parser *p, char *line);
 void		bo_ellipsoid_radius(t_scene *s, t_parser *p, char *line);
 void		bo_ellipsoid_height(t_scene *s, t_parser *p, char *line);
-void		bo_paraboloid_pos(t_scene *s, t_parser *p, char *line);
-void		bo_paraboloid_rotate(t_scene *s, t_parser *p, char *line);
-void		bo_paraboloid_height(t_scene *s, t_parser *p, char *line);
+//void		bo_paraboloid_pos(t_scene *s, t_parser *p, char *line);
+//void		bo_paraboloid_rotate(t_scene *s, t_parser *p, char *line);
+//void		bo_paraboloid_height(t_scene *s, t_parser *p, char *line);
 
 void		bo_lambert_color(t_scene *s, t_parser *p, char *line);
 void		bo_metal_color(t_scene *s, t_parser *p, char *line);
@@ -97,9 +97,9 @@ void		bo_difflight(t_scene *s, t_parser *p, char *line);
 void		bo_skybox_gradient(t_scene *s, t_parser *p, char *line);
 void		bo_skybox_none(t_scene *s, t_parser *p, char *line);
 void		bo_ellipsoid(t_scene *s, t_parser *p, char *line);
-void		bo_paraboloid(t_scene *s, t_parser *p, char *line);
+//void		bo_paraboloid(t_scene *s, t_parser *p, char *line);
 
-void		bc_paraboloid(t_scene *s, t_parser *p, char *line);
+//void		bc_paraboloid(t_scene *s, t_parser *p, char *line);
 void		bc_ellipsoid(t_scene *s, t_parser *p, char *line);
 void		bc_cam(t_scene *s, t_parser *p, char *line);
 void		bc_sphere(t_scene *s, t_parser *p, char *line);

@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/03/20 14:50:58 by vafanass         ###   ########.fr        #
+#    Updated: 2017/03/21 13:53:00 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,8 @@ SRC =		esdl/color.c\
 			parser/bc_lambert.c\
 			parser/bc_metal.c\
 			parser/bc_difflight.c\
+			parser/bc_paraboloid.c\
+			parser/paraboloid.c\
 			parser/temp.c\
 			raytracer/random.c\
 			raytracer/ray.c\

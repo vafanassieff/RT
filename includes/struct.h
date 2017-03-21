@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/20 17:19:27 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:52:19 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,35 +391,6 @@ typedef struct	s_iter
 /*
 ** Parser
 */
-
-enum			e_bytetab
-{
-	E_TAB_VOID = 0,
-	E_TAB_CAM,
-	E_TAB_OBJ,
-	E_TAB_SKYBOX,
-	E_TAB_FOV,
-	E_TAB_TARGET,
-	E_TAB_APERT,
-	E_TAB_SPHERE,
-	E_TAB_PLANE,
-	E_TAB_CYLINDER,
-	E_TAB_CONE,
-	E_TAB_ELLIPSOID,
-	E_TAB_RADIUS,
-	E_TAB_POS,
-	E_TAB_ROTATE,
-	E_TAB_HEIGHT,
-	E_TAB_LAMBERT,
-	E_TAB_METAL,
-	E_TAB_DIELECT,
-	E_TAB_DIFFLIGHT,
-	E_TAB_COLOR,
-	E_TAB_PARAM,
-	E_TAB_GRADIENT,
-	E_TAB_NONE,
-	E_TAB_LAST
-};
 
 typedef struct	s_parser
 {

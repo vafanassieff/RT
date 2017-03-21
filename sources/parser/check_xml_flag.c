@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 20:39:28 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/13 17:16:44 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:35:00 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ static void	check_flag_bis(t_parser *parser, UINT flag)
 			(flag ^ BYTE_PLANE) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR) ||
 			(flag ^ BYTE_CONE) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR) ||
 			(flag ^ BYTE_CYLINDER) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR) ||
-			(flag ^ BYTE_ELLIPSOID) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR))
+			(flag ^ BYTE_ELLIPSOID) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR)) //||
+			//(flag ^ BYTE_PARABOLOID) == (BYTE_OBJ | BYTE_LAMBERT | BYTE_COLOR))
 		parser->f = (void*)&bo_lambert_color;
 	else if ((flag ^ BYTE_SPHERE) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR) ||
 			(flag ^ BYTE_PLANE) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR) ||
 			(flag ^ BYTE_CONE) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR) ||
 			(flag ^ BYTE_CYLINDER) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR) ||
-			(flag ^ BYTE_ELLIPSOID) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR))
+			(flag ^ BYTE_ELLIPSOID) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR)) //||
+			//(flag ^ BYTE_PARABOLOID) == (BYTE_OBJ | BYTE_METAL | BYTE_COLOR))
 		parser->f = (void*)&bo_metal_color;
 	else
 		check_flag_ter(parser, flag);
