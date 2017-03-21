@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 16:22:20 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 11:19:18 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 16:05:41 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void		button_filter(void *param)
 	t_matrixf		*t;
 	static	int		reset;
 
-	t = malloc(sizeof(t_matrixf));
 	rt = (void*)param;
 	rt->suspend = TRUE;
 	if (reset >= 8)
@@ -64,9 +63,15 @@ void		button_filter(void *param)
 		filter_negative(rt, &f);
 	else if (reset >= 3 && reset <= 7)
 	{
+		t = malloc(sizeof(t_matrixf));
 		choose_matrice(t);
 		filter_matrice(rt, &f, *t);
+		free(t->matrice);
+		free(t);
 	}
+	//if (t->flag == 1)
+	//	free(t->matrice);
+	//free(t);
 	reset++;
 	rt->render = TRUE;
 	display_rt(rt);

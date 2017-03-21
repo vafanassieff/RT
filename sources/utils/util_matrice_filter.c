@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 14:38:51 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/21 11:01:00 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 16:07:48 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	matrice_low_blur(t_matrixf *t)
 	t->matrice = malloc(sizeof(double) * 25);
 	ft_memcpy(t->matrice, matrice, 25 * sizeof(double));
 	t->size = 4;
-	t->factor = 6.0;
+	t->factor = 13.0;
+	t->flag = 1;
 }
 
 void	matrice_motion_blur(t_matrixf *t)
@@ -65,6 +66,7 @@ void	matrice_motion_blur(t_matrixf *t)
 	ft_memcpy(t->matrice, matrice, 9 * 9 * sizeof(double));
 	t->size = 8;
 	t->factor = 10.0;
+	t->flag = 1;
 }
 
 void	matrice_sharpen(t_matrixf *t)
@@ -81,7 +83,8 @@ void	matrice_sharpen(t_matrixf *t)
 	t->matrice = malloc(sizeof(double) * 25);
 	ft_memcpy(t->matrice, matrice, 25 * sizeof(double));
 	t->size = 4;
-	t->factor = 8.0;
+	t->factor = 9.0;
+	t->flag = 1;
 }
 
 void	matrice_emboss(t_matrixf *t)
@@ -99,4 +102,5 @@ void	matrice_emboss(t_matrixf *t)
 	ft_memcpy(t->matrice, matrice, 25 * sizeof(double));
 	t->size = 4;
 	t->factor = 8.0;
+	t->flag = 1;
 }

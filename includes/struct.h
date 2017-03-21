@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 13:52:19 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:59:33 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ typedef	struct		s_matrixf
 	double			*matrice;
 	double			factor;
 	int				size;
+	int				flag;
 }					t_matrixf;
 /*
 ** Scene holder
