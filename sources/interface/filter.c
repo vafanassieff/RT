@@ -6,7 +6,7 @@
 /*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 15:27:05 by vafanass          #+#    #+#             */
-/*   Updated: 2017/03/20 18:05:25 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 11:19:20 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,7 @@ void	filter_matrice(t_rt *rt, t_filtervalue *f, t_matrixf t)
 {
 	t_filtermatrice	m;
 
-	init_filter(&m, t.size, t.factor);
-	f->pixels = (Uint32 *)rt->sr_view->pixels;
-	f->y = -1;
-	int kekus = 0;
-	int kek = 0;
-	printf("\n\n");
+	init_filter(&m, f, t, rt);
 	while (++f->y < rt->sr_view->h)
 	{
 		f->x = -1;
@@ -104,23 +99,9 @@ void	filter_matrice(t_rt *rt, t_filtervalue *f, t_matrixf t)
 				m.filterx = -1;
 				while (m.filterx++ < t.size)
 				{
-					m.imagex = (f->x - m.matricewidth / 2 + m.filterx + rt->sr_view->w) % rt->sr_view->w;
-					m.imagey = (f->y - m.matriceheigth / 2 + m.filtery + rt->sr_view->h) % rt->sr_view->h;
-					f->pixel = f->pixels[m.imagey * rt->sr_view->w + m.imagex];
-					f->b = f->pixel >> 16 & 0xFF;
-					f->g = f->pixel >> 8 & 0xFF;
-					f->r = f->pixel & 0xFF;
-					m.b += f->b * t.matrice[m.filtery * (t.size + 1) + m.filterx];
-					m.g += f->g * t.matrice[m.filtery * (t.size + 1) +  m.filterx];
-					m.r += f->r * t.matrice[m.filtery * (t.size + 1) + m.filterx];
-					kek++;	
-					if (kekus == 0)
-						printf("%d ", (int)t.matrice[m.filtery * (t.size + 1)  + m.filterx]);
+					calc_filter(&m, f, t, rt);
 				}
-				  if (kekus == 0)
-					  printf("\n");
 			}
-			kekus = 1;
 			m.red = min(max((int)(m.factor * m.r + m.bias), 0), 255);
 			m.green = min(max((int)(m.factor * m.g + m.bias), 0), 255);
 			m.blue = min(max((int)(m.factor * m.b + m.bias), 0), 255);

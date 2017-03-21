@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/20 18:05:22 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 11:24:33 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include "kernel.h"
 
 # include "struct.h"
-
-void		init_filter(t_filtermatrice *m, int size, double factor);
-void		reset_rgb(t_filtermatrice *m);
-void		choose_matrice(t_matrixf *t);
-void		matrice_low_blur(t_matrixf *t);
-void		matrice_motion_blur(t_matrixf *t);
 
 /*
 ** Init RT
@@ -74,13 +68,13 @@ void		bo_cone_rotate(t_scene *s, t_parser *p, char *line);
 void		bo_cylinder_pos(t_scene *s, t_parser *p, char *line);
 void		bo_cylinder_radius(t_scene *s, t_parser *p, char *line);
 void		bo_cylinder_rotate(t_scene *s, t_parser *p, char *line);
-void        bo_ellipsoid_pos(t_scene *s, t_parser *p, char *line);
-void        bo_ellipsoid_rotate(t_scene *s, t_parser *p, char *line);
-void        bo_ellipsoid_radius(t_scene *s, t_parser *p, char *line);
-void        bo_ellipsoid_height(t_scene *s, t_parser *p, char *line);
-void        bo_paraboloid_pos(t_scene *s, t_parser *p, char *line);
-void        bo_paraboloid_rotate(t_scene *s, t_parser *p, char *line);
-void        bo_paraboloid_height(t_scene *s, t_parser *p, char *line);
+void		bo_ellipsoid_pos(t_scene *s, t_parser *p, char *line);
+void		bo_ellipsoid_rotate(t_scene *s, t_parser *p, char *line);
+void		bo_ellipsoid_radius(t_scene *s, t_parser *p, char *line);
+void		bo_ellipsoid_height(t_scene *s, t_parser *p, char *line);
+void		bo_paraboloid_pos(t_scene *s, t_parser *p, char *line);
+void		bo_paraboloid_rotate(t_scene *s, t_parser *p, char *line);
+void		bo_paraboloid_height(t_scene *s, t_parser *p, char *line);
 
 void		bo_lambert_color(t_scene *s, t_parser *p, char *line);
 void		bo_metal_color(t_scene *s, t_parser *p, char *line);
@@ -102,11 +96,11 @@ void		bo_metal(t_scene *s, t_parser *p, char *line);
 void		bo_difflight(t_scene *s, t_parser *p, char *line);
 void		bo_skybox_gradient(t_scene *s, t_parser *p, char *line);
 void		bo_skybox_none(t_scene *s, t_parser *p, char *line);
-void        bo_ellipsoid(t_scene *s, t_parser *p, char *line);
-void        bo_paraboloid(t_scene *s, t_parser *p, char *line);
+void		bo_ellipsoid(t_scene *s, t_parser *p, char *line);
+void		bo_paraboloid(t_scene *s, t_parser *p, char *line);
 
-void        bc_paraboloid(t_scene *s, t_parser *p, char *line);
-void        bc_ellipsoid(t_scene *s, t_parser *p, char *line);
+void		bc_paraboloid(t_scene *s, t_parser *p, char *line);
+void		bc_ellipsoid(t_scene *s, t_parser *p, char *line);
 void		bc_cam(t_scene *s, t_parser *p, char *line);
 void		bc_sphere(t_scene *s, t_parser *p, char *line);
 void		bc_plane(t_scene *s, t_parser *p, char *line);
@@ -146,11 +140,21 @@ t_action	actionparam(void *param, void (f)(void*));
 
 void		button_render(void *param);
 void		button_snap(void *param);
-void        button_filter(void *param);
-void    	filter_negative(t_rt *rt, t_filtervalue *f);
-void    	filter_sepia(t_rt *rt, t_filtervalue *f);
-void    	filter_greyscale(t_rt *rt, t_filtervalue *f);
+void		button_filter(void *param);
+void		filter_negative(t_rt *rt, t_filtervalue *f);
+void		filter_sepia(t_rt *rt, t_filtervalue *f);
+void		filter_greyscale(t_rt *rt, t_filtervalue *f);
 void		filter_matrice(t_rt *rt, t_filtervalue *f, t_matrixf t);
+void		calc_filter(t_filtermatrice *m, t_filtervalue *f,
+				t_matrixf t, t_rt *rt);
+void		init_filter(t_filtermatrice *m, t_filtervalue *f,
+				t_matrixf t, t_rt *rt);
+void		reset_rgb(t_filtermatrice *m);
+void		choose_matrice(t_matrixf *t);
+void		matrice_low_blur(t_matrixf *t);
+void		matrice_motion_blur(t_matrixf *t);
+void		matrice_sharpen(t_matrixf *t);
+void		matrice_emboss(t_matrixf *t);
 /*
 ** Raytracer rendering
 */
@@ -253,10 +257,13 @@ t_cone		*new_cone(t_vec3 vertex, t_vec3 cp, const double tang,
 BOOL		hit_cone(void *obj, const t_ray ray, const double t[2],
 			t_hit *param);
 
-t_ellipsoid	*new_ellipsoid(t_vec3 center, t_vec3 vertex, double k, double radius);
-BOOL    	hit_ellispoid(void *obj, const t_ray ray, const double t[2], t_hit *param);
+t_ellipsoid	*new_ellipsoid(t_vec3 center, t_vec3 vertex, double k,
+			double radius);
+BOOL		hit_ellispoid(void *obj, const t_ray ray, const double t[2],
+				t_hit *param);
 t_paraboloid	*new_paraboloid(t_vec3 vertex, t_vec3 center, double k);
-BOOL    	hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *param);
+BOOL		hit_paraboloid(void *obj, const t_ray ray, const double t[2],
+			t_hit *param);
 
 /*
 ** Texture
@@ -265,7 +272,7 @@ BOOL    	hit_paraboloid(void *obj, const t_ray ray, const double t[2], t_hit *pa
 void		texture_rainbow(t_vec3 pos, t_vec3 *attenuation);
 void		texture_liney(t_vec3 pos, t_vec3 *attenuation);
 void		texture_linex(t_vec3 pos, t_vec3 *attenuation);
-void    	texture_checkboard(t_vec3 pos, t_vec3 *attenuation);
+void		texture_checkboard(t_vec3 pos, t_vec3 *attenuation);
 void		texture_it(const t_hit  param, t_vec3 *attenuation);
 void		sphere_uv(const t_vec3 p, double *u, double *v);
 t_vec3		surface_value(SDL_Surface *data, double u, double v);

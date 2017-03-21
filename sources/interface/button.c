@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 16:22:20 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/20 18:05:24 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/21 11:19:18 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		button_filter(void *param)
 	t = malloc(sizeof(t_matrixf));
 	rt = (void*)param;
 	rt->suspend = TRUE;
-	if (reset >= 4)
+	if (reset >= 8)
 		reset = 0;
 	if (reset == 0)
 		filter_sepia(rt, &f);
@@ -62,24 +62,9 @@ void		button_filter(void *param)
 		filter_greyscale(rt, &f);
 	else if (reset == 2)
 		filter_negative(rt, &f);
-	else if (reset == 3)
+	else if (reset >= 3 && reset <= 7)
 	{
 		choose_matrice(t);
-		int x;
-		int y;
-		y = 0;
-		x = -1;
-		printf("\n\n");
-		while (x++ < (t->size + 1) * (t->size + 1) - 1)
-		{
-			printf("%d ", (int)t->matrice[x]);
-			y++;
-			if (y == t->size + 1)
-			{
-				printf("\n");
-				y = 0;
-			}
-		}
 		filter_matrice(rt, &f, *t);
 	}
 	reset++;
