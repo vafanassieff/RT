@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 00:30:30 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/20 18:12:32 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/22 14:16:15 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ static void	*select_hit(const UCHAR t)
 		f = (void*)&hit_ellispoid;
 	else if (t == OBJ_PARABOLOID)
 		f = (void*)&hit_paraboloid;
+	else if (t == OBJ_XY_RECT)
+		f = (void*)&hit_xy_rect;
+	else if (t == OBJ_TRIANGLE)
+		f = (void*)&hit_triangle;
 	else
 		f = (void*)&hit_sphere;
 	return (f);

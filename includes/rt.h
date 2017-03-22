@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 17:31:05 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 13:52:17 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/22 14:17:12 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include "kernel.h"
 
 # include "struct.h"
+
+t_triangle  *new_triangle(t_vec3 vertex, t_vec3 v2, t_vec3 v3);
+BOOL    hit_triangle(void *obj, const t_ray ray, const double t[2], t_hit *param);
+BOOL    hit_xy_rect(void *obj, const t_ray ray, const double t[2], t_hit *param);
+t_xy_rect   *new_xy_rect(double x0, double x1, double y0, double y1, double k);
 
 /*
 ** Init RT

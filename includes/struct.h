@@ -6,16 +6,47 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 15:59:33 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:07:11 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _STRUCT_H
 # define _STRUCT_H
 
+typedef struct	s_triangle
+{
+	t_vec3	vertex;
+	t_vec3	v2;
+	t_vec3	v3;
+	t_vec3	normal;
+	t_vec3	e1;
+	t_vec3	e2;
+}				t_triangle;
+
+typedef	struct	s_triangle_var
+{
+	t_vec3		p;
+	t_vec3		q;
+	t_vec3		ter;
+	double		det;
+	double		inv_det;
+	double		u;
+	double		v;
+	double		tbis;
+}				t_triangle_var;
+
+typedef	struct	s_xy_rect
+{
+	double	x0;
+	double	y0;
+	double	y1;
+	double	x1;
+	double	k;
+}				t_xy_rect;
+
 /*
-** Ray
-*/
+ ** Ray
+ */
 
 typedef struct	s_ray
 {
@@ -24,8 +55,8 @@ typedef struct	s_ray
 }				t_ray;
 
 /*
-** Param link object and material for rendering
-*/
+ ** Param link object and material for rendering
+ */
 
 typedef struct	s_hit
 {
@@ -41,8 +72,8 @@ typedef struct	s_hit
 }				t_hit;
 
 /*
-** Texture
-*/
+ ** Texture
+ */
 
 typedef	struct		s_textvalue
 {
@@ -67,8 +98,8 @@ typedef	struct		s_texture
 }					t_texture;
 
 /*
-** Materials
-*/
+ ** Materials
+ */
 
 typedef struct	s_mat
 {
@@ -81,8 +112,8 @@ typedef struct	s_mat
 }				t_mat;
 
 /*
-** Objects
-*/
+ ** Objects
+ */
 
 typedef struct	s_plane
 {
@@ -133,8 +164,8 @@ typedef	struct	s_paraboloid
 }				t_paraboloid;
 
 /*
-** Discriminant
-*/
+ ** Discriminant
+ */
 
 typedef struct	s_discriminant
 {
@@ -148,8 +179,8 @@ typedef struct	s_discriminant
 }				t_discriminant;
 
 /*
-** Filter Structure
-*/
+ ** Filter Structure
+ */
 
 typedef	struct		s_filtervalue
 {
@@ -192,8 +223,8 @@ typedef	struct		s_matrixf
 	int				flag;
 }					t_matrixf;
 /*
-** Scene holder
-*/
+ ** Scene holder
+ */
 
 typedef struct	s_obj
 {
@@ -257,8 +288,8 @@ typedef struct	s_scene
 }				t_scene;
 
 /*
-** Param for menu with lists rendering
-*/
+ ** Param for menu with lists rendering
+ */
 
 typedef struct	s_surface
 {
@@ -291,8 +322,8 @@ typedef struct	s_strparam
 }				t_strparam;
 
 /*
-** Button event and action
-*/
+ ** Button event and action
+ */
 
 typedef struct	s_button
 {
@@ -320,8 +351,8 @@ typedef struct	s_action
 }				t_action;
 
 /*
-** Mini 3D view rendering for menu
-*/
+ ** Mini 3D view rendering for menu
+ */
 
 typedef struct	s_viewparam
 {
@@ -341,8 +372,8 @@ typedef struct	s_imgparam
 }				t_imgparam;
 
 /*
-** Menu view
-*/
+ ** Menu view
+ */
 
 typedef struct	s_menu
 {
@@ -368,8 +399,8 @@ typedef struct	s_panel
 }				t_panel;
 
 /*
-** Param for rendering
-*/
+ ** Param for rendering
+ */
 
 typedef struct	s_render
 {
@@ -390,8 +421,8 @@ typedef struct	s_iter
 }				t_iter;
 
 /*
-** Parser
-*/
+ ** Parser
+ */
 
 typedef struct	s_parser
 {
@@ -420,8 +451,8 @@ typedef struct	s_parser
 }				t_parser;
 
 /*
-** Raytracer main
-*/
+ ** Raytracer main
+ */
 
 typedef struct	s_rt
 {
@@ -462,8 +493,8 @@ typedef struct	s_rt
 }				t_rt;
 
 /*
-** Multithreading
-*/
+ ** Multithreading
+ */
 
 typedef struct	s_tharg
 {
