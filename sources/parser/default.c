@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 22:19:12 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/22 16:57:46 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/23 14:24:09 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,20 @@
 
 void		default_obj(t_scene *scene)
 {
-	scene->obj[3] = new_object((void*)new_plane(v3_(1., 0., 0.), v3_(1., -1.,
-	0.)), OBJ_PLANE, new_material(v3_(1., .2, .2), 0.), MAT_METAL);
-	//scene->obj[1] = new_object(new_cylinder(v3_(0., 1., 0.), v3_(0., 0., 0.),
-	//1., 1.), OBJ_CYLINDER, new_material(v3_(1., 1., 1.), 0.), MAT_DIFF_LIGHT);
-	scene->obj[1] = new_object((void*)new_triangle(v3_(0.0, 3.0, 0.0),v3_(0.0, 0.0, 3.0), v3_(0.0, 0.0 , -3.0)),
-	OBJ_TRIANGLE, new_material(v3_(0.9, 0.5, 0.3), 0.0), MAT_METAL);
-	scene->obj[0] = new_object((void*)new_triangle(v3_(0.0, -3.0, 0.0),v3_(0.0, 0.0, 3.0), v3_(0.0, 0.0 , -3.0)),
-	OBJ_TRIANGLE, new_material(v3_(0.2, 0.5, 0.7), 0.0), MAT_METAL);
-	//scene->obj[0] = new_object((void*)new_xy_rect(3.0, 5.0, 1.0, 3.0, 0.0),
-	//OBJ_XY_RECT, new_material(v3_(0.9, 0.5, 0.4), 0.), MAT_LAMBERT);
-	scene->obj[2] = new_object((void*)new_sphere(v3_(-10., 0., 0.), 2.),
-	OBJ_SPHERE, new_material(v3_(10., 10., 10.), .0), MAT_DIFF_LIGHT);
-	//scene->obj[3] = new_object((void*)new_sphere(v3_(0., 0., 0.), 2.),
-	//OBJ_SPHERE, new_material(v3_(1., .2, 1.), 0.), MAT_METAL);
-	//scene->obj[4] = new_object((void*)new_sphere(v3_(-1., .5, -1.), .5),
-	//OBJ_SPHERE, new_material(v3_(1., 1., .2), 0.), MAT_LAMBERT);
-	//scene->obj[5] = new_object((void*)new_cone(v3_(0., 1., 0.), v3_(5., 1.,
-	//-2.), .2, 4.), OBJ_CONE, new_material(v3_(.3, .5, .1), 0.), MAT_METAL);
-	//scene->obj[0] = new_object((void*)new_ellipsoid(v3_(0., 3., -5), v3_(0. , 1.0, 0.),
-	//0.2, 0.3), OBJ_ELLIPSOID, new_material(v3_(0.9, 0.1, 0.2), 0.), MAT_LAMBERT);
-	//scene->obj[1] = new_object((void*)new_paraboloid(v3_(0.0, 0.0, 3.0), v3_(0.0, 1.0, 0.0),
-	//-1.21), OBJ_PARABOLOID, new_material(v3_(0.5, 0.4, 0.9), 0.), MAT_LAMBERT);
-	scene->this_obj = &scene->obj[1];
+	t_mat *white = new_material(v3_(0.73, 0.73, 0.73), 0.0);
+	t_mat *green = new_material(v3_(0.12, 0.45, 0.15), 0.0);
+	t_mat *red = new_material(v3_(0.65, 0.05, 0.05), 0.0);
+	t_mat *light = new_material(v3_(15.0, 15.0, 15.0), 0.0);
+
+	scene->obj[0] = new_object((void*)new_triangle(v3_(-5.0, 0.0, 5.0),v3_(-5.0, 0.0, -5.0), v3_(5.0, 0.0 ,-5.0)),
+	OBJ_TRIANGLE, white, MAT_LAMBERT);
+	scene->obj[1] = new_object((void*)new_triangle(v3_(-5.0, 0.0, 5.0),v3_(5.0, 0.0, 5.0), v3_(5.0, 0.0 , -5.0)),
+	OBJ_TRIANGLE, white, MAT_LAMBERT);
+	scene->obj[2] = new_object((void*)new_triangle(v3_(-5.0, 0.0, 5.0),v3_(-5.0, 0.0, -5.0), v3_(5.0, 0.0 ,-5.0)),
+	OBJ_TRIANGLE, red, MAT_LAMBERT);
+	scene->obj[3] = new_object((void*)new_triangle(v3_(-5.0, 0.0, 5.0),v3_(-5.0, 0.0, -5.0), v3_(5.0, 0.0 ,-5.0)),
+	OBJ_TRIANGLE, red, MAT_LAMBERT);
+	scene->this_obj = &scene->obj[0];
 }
 
 void		default_cam(t_rt *rt, t_scene *scene)
@@ -44,7 +35,7 @@ void		default_cam(t_rt *rt, t_scene *scene)
 	scene->sizeof_cam = 1;
 	rt->parser.lim_cam = 1;
 	scene->cam = (t_cam*)malloc(scene->sizeof_cam * sizeof(t_cam));
-	scene->cam[0] = set_camera(v3_(-7., 0., 0.), v3_(0., 0., 0.), v3_(0., -1.,
+	scene->cam[0] = set_camera(v3_(-10., 3., 0.), v3_(0., 0., 0.), v3_(0., -1.,
 	0.), camparam(60., (double)rt->r_view->w / (double)rt->r_view->h, .0,
 	v3_lenght_double_(v3_sub_vec_(v3_(13., 2., 3.), v3_(0., 0., 0.)))));
 	scene->this_cam = &scene->cam[0];
