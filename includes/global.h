@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:26:38 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/22 14:16:48 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/24 14:56:09 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,24 @@
 # define MSAMP			2
 
 # define CGRID			0xff0055ff
+# define CBAR			0xff323333
+# define CPROGRESS		0xff55ff00
 
-# define API_NAME		"RT"
+# define API_NAME		"RT ~steam"
 # define MAX_FPS		60
 # define MENU_RX		300
+# define TILE_RY		40
 # define MINWIN_RX		1400
 # define MINWIN_RY		900
 # define MAXWIN_RX		1920
 # define MAXWIN_RY		1200
 # define WIN_RX			rt->rx
 # define WIN_RY			rt->ry
-# define LOAD_NAME		"image/Loader.bmp"
+# define LOAD_NAME		"image/Loader.png"
 # define LOAD_RX		900
 # define LOAD_RY		563
+# define LOADBAR_RX		450
+# define LOADBAR_RY		20
 # define QUICKFONT		"font/Quicksand_Book.otf"
 # define IMG_ADDSPHERE	"image/AddSphere.bmp"
 # define IMG_ADDPLANE	"image/AddPlane.bmp"
@@ -67,8 +72,8 @@
 # define OBJ_SKYBOX		0x80
 # define OBJ_PARABOLOID 0x90
 # define OBJ_ELLIPSOID	0x91
-# define OBJ_XY_RECT	0x92
-# define OBJ_TRIANGLE	0x93
+# define OBJ_TRIANGLE	0x92
+
 # define SKYBX_NONE		0x1
 # define SKYBX_GRADIENT	0x2
 
@@ -100,8 +105,8 @@
 # define BO_PLANE		"<plane>"
 # define BO_CYLINDER	"<cylinder>"
 # define BO_CONE		"<cone>"
-# define BO_ELLIPSOID   "<ellipsoid>"
-# define BO_PARABOLOID	"<paraboloid>"
+# define BO_ELLIPSOID	"<ellipsoid>"
+# define BO_PARABLOID	"<paraboloid>"
 # define BO_RADIUS		"<radius>"
 # define BO_POS			"<pos>"
 # define BO_ROTATE		"<rotate>"
@@ -115,6 +120,8 @@
 # define BO_TEXTURE		"<texture>"
 # define BO_SKYBOX		"<skybox>"
 # define BO_GRADIENT	"<gradient>"
+# define BO_PATH		"<path>"
+# define BO_TRIANGLE	"<triangle>"
 # define BO_NONE		"<none>"
 
 # define BC_CAM			"</camera>"
@@ -125,7 +132,7 @@
 # define BC_SPHERE		"</sphere>"
 # define BC_PLANE		"</plane>"
 # define BC_CYLINDER	"</cylinder>"
-# define BC_PARABOLOID  "</paraboloid>"
+# define BC_PARABLOID	"</paraboloid>"
 # define BC_CONE		"</cone>"
 # define BC_RADIUS		"</radius>"
 # define BC_POS			"</pos>"
@@ -141,6 +148,8 @@
 # define BC_SKYBOX		"</skybox>"
 # define BC_GRADIENT	"</gradient>"
 # define BC_ELLIPSOID   "</ellipsoid>"
+# define BC_PATH		"</path>"
+# define BC_TRIANGLE	"</triangle>"
 # define BC_NONE		"</none>"
 
 # define BYTE_CAM		((UINT)1 << 0)
@@ -154,19 +163,22 @@
 # define BYTE_CYLINDER	((UINT)1 << 8)
 # define BYTE_CONE		((UINT)1 << 9)
 # define BYTE_ELLIPSOID ((UINT)1 << 10)
-//# define BYTE_PARABOLOID ((UINT)1 <<30)
-# define BYTE_RADIUS	((UINT)1 << 11)
-# define BYTE_POS		((UINT)1 << 12)
-# define BYTE_ROTATE	((UINT)1 << 13)
-# define BYTE_HEIGHT    ((UINT)1 << 14)
-# define BYTE_LAMBERT	((UINT)1 << 15)
-# define BYTE_METAL		((UINT)1 << 16)
-# define BYTE_DIELECT	((UINT)1 << 17)
-# define BYTE_DIFFLIGHT	((UINT)1 << 18)
-# define BYTE_COLOR		((UINT)1 << 19)
-# define BYTE_PARAM		((UINT)1 << 20)
-# define BYTE_GRADIENT	((UINT)1 << 21)
-# define BYTE_NONE		((UINT)1 << 31)
+# define BYTE_PARABLOID ((UINT)1 << 11)
+# define BYTE_TRIANGLE	((UINT)1 << 12)
+# define BYTE_RADIUS	((UINT)1 << 13)
+# define BYTE_POS		((UINT)1 << 14)
+# define BYTE_ROTATE	((UINT)1 << 15)
+# define BYTE_HEIGHT    ((UINT)1 << 16)
+# define BYTE_LAMBERT	((UINT)1 << 17)
+# define BYTE_METAL		((UINT)1 << 18)
+# define BYTE_DIELECT	((UINT)1 << 19)
+# define BYTE_DIFFLIGHT	((UINT)1 << 20)
+# define BYTE_COLOR		((UINT)1 << 21)
+# define BYTE_PARAM		((UINT)1 << 22)
+# define BYTE_GRADIENT	((UINT)1 << 23)
+# define BYTE_TEXTURE   ((UINT)1 << 24)
+# define BYTE_PATH		((UINT)1 << 25)
+# define BYTE_NONE		((UINT)1 << 26)
 
 enum			e_bytetab
 {
@@ -182,7 +194,8 @@ enum			e_bytetab
 	E_TAB_CYLINDER,
 	E_TAB_CONE,
 	E_TAB_ELLIPSOID,
-	//E_TAB_PARABOLOID,
+	E_TAB_PARABLOID,
+	E_TAB_TRIANGLE,
 	E_TAB_RADIUS,
 	E_TAB_POS,
 	E_TAB_ROTATE,
@@ -194,6 +207,8 @@ enum			e_bytetab
 	E_TAB_COLOR,
 	E_TAB_PARAM,
 	E_TAB_GRADIENT,
+	E_TAB_TEXTURE,
+	E_TAB_PATH,
 	E_TAB_NONE,
 	E_TAB_LAST
 };

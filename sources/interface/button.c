@@ -6,7 +6,7 @@
 /*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 16:22:20 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/21 16:08:50 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/22 22:39:02 by qfremeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,21 @@ void		button_snap(void *param)
 		SDL_SaveBMP(rt->sr_view, name);
 		flash_snap(rt, 1);
 	}
+}
+
+void		button_close(void *param)
+{
+	t_rt			*rt;
+
+	rt = (void*)param;
+	rt->esdl->eng.input->quit = 1;
+	rt->esdl->run = 0;
+}
+
+void		button_minus(void *param)
+{
+	t_rt			*rt;
+
+	rt = (void*)param;
+	SDL_MinimizeWindow(rt->esdl->eng.win);
 }

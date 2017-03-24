@@ -6,7 +6,7 @@
 #    By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/23 17:10:25 by qfremeau          #+#    #+#              #
-#    Updated: 2017/03/22 14:18:17 by vafanass         ###   ########.fr        #
+#    Updated: 2017/03/23 16:12:27 by vafanass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ else
 					librairies/libvec/includes\
 					/Users/$(ID_UN)/.brew/Cellar/sdl2/2.0.5/include/SDL2\
 					/Users/$(ID_UN)/.brew/Cellar/sdl2_ttf/2.0.14/include/SDL2\
+					/Users/$(ID_UN)/.brew/Cellar/sdl2_image/2.0.1_2/include/SDL2\
 					-F -framework Cocoa 
 		CFSDL =		
 	endif
@@ -69,6 +70,7 @@ SRC =		esdl/color.c\
 			events/events.c\
 			events/hook.c\
 			events/init.c\
+			events/loading.c\
 			events/quit.c\
 			events/events.c\
 			events/arrow_lmouse.c\
@@ -85,6 +87,7 @@ SRC =		esdl/color.c\
 			interface/filter.c\
 			parser/init.c\
 			parser/default.c\
+			parser/random.c\
 			parser/scene.c\
 			parser/read_xml.c\
 			parser/check_xml_flag.c\
@@ -99,6 +102,7 @@ SRC =		esdl/color.c\
 			parser/ellipsoid.c\
 			parser/lambert.c\
 			parser/metal.c\
+			parser/dielectric.c\
 			parser/difflight.c\
 			parser/bc_cam.c\
 			parser/bc_skybox.c\
@@ -109,10 +113,13 @@ SRC =		esdl/color.c\
 			parser/bc_ellipsoid.c\
 			parser/bc_lambert.c\
 			parser/bc_metal.c\
+			parser/bc_dielectric.c\
 			parser/bc_difflight.c\
 			parser/bc_paraboloid.c\
 			parser/paraboloid.c\
-			parser/temp.c\
+			parser/texture.c\
+			parser/bc_triangle.c\
+			parser/triangle.c\
 			raytracer/random.c\
 			raytracer/ray.c\
 			raytracer/render.c\
@@ -123,7 +130,9 @@ SRC =		esdl/color.c\
 			scene/camera.c\
 			scene/light.c\
 			scene/material.c\
-			scene/scatter.c\
+			scene/lambert.c\
+			scene/metal.c\
+			scene/dielectric.c\
 			scene/object.c\
 			scene/skybox.c\
 			scene/sphere.c\
@@ -135,7 +144,6 @@ SRC =		esdl/color.c\
 			scene/texture_calculator.c\
 			scene/paraboloid.c\
 			scene/ellipsoid.c\
-			scene/xy_rect.c\
 			scene/triangle.c\
 			utils/list.c\
 			utils/list2.c\
@@ -154,7 +162,7 @@ OBJ =		$(SRC:.c=.o)
 # Prefixes
 ifeq ($(OS),Windows_NT)
 	OPNCL =		-L/lib/ -lOpenCL
-	LSDL2 =		-L/lib/ -lSDL2 -lSDL2_ttf
+	LSDL2 =		-L/lib/ -lSDL2 -lSDL2_ttf -lSDL2_image
 	LMATH =		
 	LPTHR =		
 else
@@ -162,13 +170,14 @@ else
 	ifeq ($(UNAME_S),Darwin)
 		OPNCL =		-framework OpenCL
 		LSDL2 =		-L/Users/$(ID_UN)/.brew/Cellar/sdl2/2.0.5/lib -lSDL2\
-					-L/Users/$(ID_UN)/.brew/Cellar/sdl2_ttf/2.0.14/lib -lSDL2_ttf
+					-L/Users/$(ID_UN)/.brew/Cellar/sdl2_ttf/2.0.14/lib -lSDL2_ttf\
+					-L/Users/$(ID_UN)/.brew/Cellar/sdl2_image/2.0.1_2/lib -lSDL2_image
 		LMATH =		-lm
 		LPTHR =		-lpthread
 	endif
 	ifeq ($(UNAME_S),Linux)
 		OPNCL =		-L/usr/lib/x86_64-linux-gnu -lOpenCL
-		LSDL2 =		`sdl2-config --libs` -lSDL2_ttf
+		LSDL2 =		`sdl2-config --libs` -lSDL2_ttf -lSDL2_image
 		LMATH =		-lm
 		LPTHR =		-pthread
 	endif
@@ -265,3 +274,5 @@ sdl2:
 	brew link sdl2
 	brew install sdl2_ttf
 	brew link sdl2_ttf
+	brew install sdl2_image
+	brew link sdl2_image

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qfremeau <qfremeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vafanass <vafanass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:35:06 by qfremeau          #+#    #+#             */
-/*   Updated: 2017/03/22 17:07:11 by vafanass         ###   ########.fr       */
+/*   Updated: 2017/03/24 15:11:34 by vafanass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,9 @@ typedef	struct	s_triangle_var
 	double		tbis;
 }				t_triangle_var;
 
-typedef	struct	s_xy_rect
-{
-	double	x0;
-	double	y0;
-	double	y1;
-	double	x1;
-	double	k;
-}				t_xy_rect;
-
 /*
- ** Ray
- */
+** Ray
+*/
 
 typedef struct	s_ray
 {
@@ -55,8 +46,8 @@ typedef struct	s_ray
 }				t_ray;
 
 /*
- ** Param link object and material for rendering
- */
+** Param link object and material for rendering
+*/
 
 typedef struct	s_hit
 {
@@ -72,8 +63,8 @@ typedef struct	s_hit
 }				t_hit;
 
 /*
- ** Texture
- */
+** Texture
+*/
 
 typedef	struct		s_textvalue
 {
@@ -98,8 +89,8 @@ typedef	struct		s_texture
 }					t_texture;
 
 /*
- ** Materials
- */
+** Materials
+*/
 
 typedef struct	s_mat
 {
@@ -112,8 +103,8 @@ typedef struct	s_mat
 }				t_mat;
 
 /*
- ** Objects
- */
+** Objects
+*/
 
 typedef struct	s_plane
 {
@@ -161,11 +152,11 @@ typedef	struct	s_paraboloid
 	t_vec3	vertex;
 	double	k;
 	t_vec3	center;
-}				t_paraboloid;
+}				t_parabloid;
 
 /*
- ** Discriminant
- */
+** Discriminant
+*/
 
 typedef struct	s_discriminant
 {
@@ -179,8 +170,8 @@ typedef struct	s_discriminant
 }				t_discriminant;
 
 /*
- ** Filter Structure
- */
+** Filter Structure
+*/
 
 typedef	struct		s_filtervalue
 {
@@ -223,8 +214,8 @@ typedef	struct		s_matrixf
 	int				flag;
 }					t_matrixf;
 /*
- ** Scene holder
- */
+** Scene holder
+*/
 
 typedef struct	s_obj
 {
@@ -288,8 +279,8 @@ typedef struct	s_scene
 }				t_scene;
 
 /*
- ** Param for menu with lists rendering
- */
+** Param for menu with lists rendering
+*/
 
 typedef struct	s_surface
 {
@@ -322,8 +313,8 @@ typedef struct	s_strparam
 }				t_strparam;
 
 /*
- ** Button event and action
- */
+** Button event and action
+*/
 
 typedef struct	s_button
 {
@@ -341,6 +332,7 @@ typedef struct	s_butnparam
 	t_string		*string;
 	t_surface		*surface;
 	SDL_Rect		*rect;
+	int				*corner;
 	int				i_lst;
 }				t_butnparam;
 
@@ -351,8 +343,8 @@ typedef struct	s_action
 }				t_action;
 
 /*
- ** Mini 3D view rendering for menu
- */
+** Mini 3D view rendering for menu
+*/
 
 typedef struct	s_viewparam
 {
@@ -372,8 +364,8 @@ typedef struct	s_imgparam
 }				t_imgparam;
 
 /*
- ** Menu view
- */
+** Menu view
+*/
 
 typedef struct	s_menu
 {
@@ -399,8 +391,8 @@ typedef struct	s_panel
 }				t_panel;
 
 /*
- ** Param for rendering
- */
+** Param for rendering
+*/
 
 typedef struct	s_render
 {
@@ -421,8 +413,8 @@ typedef struct	s_iter
 }				t_iter;
 
 /*
- ** Parser
- */
+** Parser
+*/
 
 typedef struct	s_parser
 {
@@ -444,6 +436,7 @@ typedef struct	s_parser
 	int				i_cam;
 	int				i_skb;
 	double			ratio;
+	int				triangle;
 	int				grad;
 	int				mat;
 	int				obj;
@@ -451,8 +444,8 @@ typedef struct	s_parser
 }				t_parser;
 
 /*
- ** Raytracer main
- */
+** Raytracer main
+*/
 
 typedef struct	s_rt
 {
@@ -467,8 +460,22 @@ typedef struct	s_rt
 
 	int				rx;
 	int				ry;
+	int				grab;
+	int				g_mx;
+	int				g_my;
+	int				mx;
+	int				my;
+
 	SDL_Window		*win_temp;
 	SDL_Texture		*tx_load;
+	SDL_Rect		r_bar;
+	SDL_Surface		*sr_bar;
+	SDL_Texture		*tx_bar;
+	SDL_Rect		r_progress;
+	SDL_Surface		*sr_progress;
+	SDL_Texture		*tx_progress;
+
+	SDL_Surface		*sr_logo;
 	SDL_Rect		*r_view;
 	SDL_Surface		*sr_view;
 	SDL_Texture		*tx_view;
@@ -493,8 +500,8 @@ typedef struct	s_rt
 }				t_rt;
 
 /*
- ** Multithreading
- */
+** Multithreading
+*/
 
 typedef struct	s_tharg
 {
